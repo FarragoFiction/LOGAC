@@ -24,19 +24,20 @@ class AlchemyResultAND extends AlchemyResult {
     AlchemyResultAND(List<Item> items) : super(items);
 
     ///AND takes both functionality and appearance from both things.
-    ///TODO if this is OP (i.e. OR is never selected) then take every other trait from both.
     @override
     void combine() {
-        result = items[0].copy();
-        //
-        //skip first item
-        for(int i = 1; i<items.length; i++) {
-            Item item = items[i];
-            //
-            for(Rule t in item.rules) {
-                //
-                result.rules.add(t); //will handle not allowing duplicates.
+        result = new Item("Proposed Ruleset", new Set());
+        for(Item item in items) {
+            //every other rule
+            List<Rule> listRules = item.rules.toList();
+            for(int j = 0; j<listRules.length-1; j+2) {
+                result.rules.add(listRules[j]); //will handle not allowing duplicates.
             }
+        }
+        //8 is the arc number here
+        if(result.rules.length > 8) {
+            List<Rule> listRules = result.rules.toList();
+            listRules.removeRange(7, result.rules.length);
         }
     }
 
