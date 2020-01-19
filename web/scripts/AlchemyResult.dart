@@ -52,7 +52,7 @@ class AlchemyResultOR extends AlchemyResult {
         result.rules.clear();
 
         for(Rule t in items[0].permissiveRules) {
-            result.traits.add(t); //will handle not allowing duplicates.
+            result.rules.add(t); //will handle not allowing duplicates.
         }
 
         for(Rule t in items[1].restrictiveRules) {
@@ -72,8 +72,8 @@ class AlchemyResultXOR extends AlchemyResult {
     void combine() {
         result = items[0].copy();
         //all the things first item has that second doesn't
-        result.traits = items[0].traits.difference(items[1].traits);
+        result.rules = items[0].rules.difference(items[1].rules);
         //and vice versa
-        result.traits.addAll( items[1].traits.difference(items[0].traits));
+        result.rules.addAll( items[1].rules.difference(items[0].rules));
     }
 }
