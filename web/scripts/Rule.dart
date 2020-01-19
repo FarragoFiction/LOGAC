@@ -1,9 +1,13 @@
 abstract class Rule {
     static const String  OBJECTKEY = "object";
+    //index position is id
+    static List<Rule> rules = new List<Rule>();
     //i.e. "you may eat the object"
     String _phrase;
 
-    Rule(this._phrase);
+    Rule(this._phrase) {
+        rules.add(this);
+    }
 
     String toString() {
         return _phrase;

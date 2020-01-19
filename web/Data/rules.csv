@@ -1,0 +1,57 @@
+you can eat the object, true
+you can throw the object, true
+you can pet the object, true
+you can open the object, true
+you can ride the object, true
+you can look through the object, true
+you can sleep on the object, true
+you can jump, true
+you can fight, true
+you can water the object, true
+you can bounce the object, true
+you can steal the object, true
+you can move while you have the object, true
+you can leave the field, true
+you can give the object to others, true
+you can damage the object, true
+you can burn the object, true
+you can wash the object, true
+you can have multiple of the object, true
+you can kill the object, true
+you can interact with your opponents object directly, true
+you have to care for your object, true
+you can harvest the object at the end of the game, true
+you can't eat the object, false
+you can't throw the object, false
+you can't pet the object, false
+you can't open the object, false
+you can't ride the object, false
+you can't look through the object, false
+you can't sleep on the object, false
+you can't jump, false
+you can't fight, false
+you can't water the object, false
+you can't bounce the object, false
+you can't steal the object, false
+you can't move while you have the object, false
+you can't leave the field, false
+you can't give the object to others, false
+you can't damage the object, false
+you can't burn the object, false
+you can't wash the object, false
+you can't have multiple of the object, false
+you can't kill the object, false
+you can't interact with your opponents object directly, false
+you can't care for your object, false
+you can't harvest the object at the end of the game, false
+you must get the object into a hole, true
+you must get the object to a specific side of the field, true
+you must not let the object touch you, false
+you must not let the object touch out of bounds, false
+you must destroy all of your opponents objects, true
+you must not let the opponents object into a hole, false
+you must not let the opponents get their object to a specific side of the field, false
+you must touch the opponents with the object, true
+you must let the opponents object touch out of bounds, true
+you must not let your objects be destroyed, false
+
