@@ -34,7 +34,6 @@ abstract class Rule {
                 }
             }
         }
-        print(rules);
     }
 }
 

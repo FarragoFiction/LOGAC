@@ -2,13 +2,17 @@ import 'dart:html';
 import 'scripts/AlchemyResult.dart';
 import 'scripts/Game.dart';
 import 'scripts/Item.dart';
+import 'scripts/ItemBuilder.dart';
 import 'scripts/Rule.dart';
 
-void main() {
+void main() async {
   Game game = new Game();
   //game.display(querySelector("#output"));
-  Rule.slurpRules();
-  test();
+  await Rule.slurpRules();
+  await Item.slurpItems();
+  //Item.debugAllInDom(querySelector("#output"));
+  ItemBuilder.go(querySelector("#output"));
+  //test();
 }
 
 void test() {
