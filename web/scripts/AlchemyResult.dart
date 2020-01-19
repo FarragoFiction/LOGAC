@@ -11,6 +11,16 @@ abstract class AlchemyResult {
 
     AlchemyResult(List<Item> this.items) {
         combine();
+        capAt8();
+    }
+
+    void capAt8() {
+        //8 is the arc number here
+        if(result.rules.length > 8) {
+            List<Rule> listRules = result.rules.toList();
+            listRules.removeRange(8, result.rules.length);
+            result.rules = new Set.from(listRules);
+        }
     }
 
 
@@ -26,19 +36,15 @@ class AlchemyResultAND extends AlchemyResult {
     ///AND takes both functionality and appearance from both things.
     @override
     void combine() {
-        result = new Item("Proposed Ruleset", new Set());
+        result = new Item("${items[0]}-${items[1]}", new Set());
         for(Item item in items) {
             //every other rule
             List<Rule> listRules = item.rules.toList();
-            for(int j = 0; j<listRules.length-1; j+2) {
+            for(int j = 0; j<listRules.length-1; j+=2) {
                 result.rules.add(listRules[j]); //will handle not allowing duplicates.
             }
         }
-        //8 is the arc number here
-        if(result.rules.length > 8) {
-            List<Rule> listRules = result.rules.toList();
-            listRules.removeRange(7, result.rules.length);
-        }
+
     }
 
 }
@@ -50,6 +56,7 @@ class AlchemyResultOR extends AlchemyResult {
     @override
     void combine() {
         result = items[0].copy();
+        result.baseName = "${items[0]}-${items[1]}";
         result.rules.clear();
 
         for(Rule t in items[0].permissiveRules) {
@@ -72,6 +79,7 @@ class AlchemyResultXOR extends AlchemyResult {
     @override
     void combine() {
         result = items[0].copy();
+        result.baseName = "${items[0]}-${items[1]}";
         //all the things first item has that second doesn't
         result.rules = items[0].rules.difference(items[1].rules);
         //and vice versa
