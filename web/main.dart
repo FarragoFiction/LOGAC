@@ -7,6 +7,7 @@ import 'scripts/Rule.dart';
 void main() {
   Game game = new Game();
   //game.display(querySelector("#output"));
+  Rule.slurpRules();
   test();
 }
 

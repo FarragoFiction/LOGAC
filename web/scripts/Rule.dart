@@ -1,3 +1,4 @@
+import 'package:http/http.dart' as http;
 abstract class Rule {
     static const String  OBJECTKEY = "object";
     //index position is id
@@ -18,6 +19,23 @@ abstract class Rule {
     }
 
     String applyObjectToPhraseDebug(String item);
+
+    static void slurpRules() async {
+        String data = await http.read('/Data/rules.csv');
+        List<String> lines = data.split("\n");
+        for(String line in lines) {
+            print("line is $line");
+            if(line.trim().isNotEmpty) {
+                List<String> parts = line.split(",");
+                if (parts[1].contains("true")) {
+                    new PermissiveRule(parts[0]);
+                } else {
+                    new RestrictiveRule(parts[0]);
+                }
+            }
+        }
+        print(rules);
+    }
 }
 
 class PermissiveRule extends Rule {
