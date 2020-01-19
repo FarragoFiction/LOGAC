@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:html';
 import 'package:http/http.dart' as http;
+import 'ItemBuilder.dart';
 import 'Rule.dart';
 
 class Item {
@@ -69,16 +70,6 @@ class Item {
     }
 
     void debugInDOM(Element element) {
-        DivElement div = new DivElement()
-            ..text = baseName
-            ..style.border="1px solid black";
-
-        int i = 0;
-        for(Rule rule in rules) {
-            i++;
-            div.append(new DivElement()..text = "$i: ${rule.applyObjectToPhraseDebug(baseName)}");
-        }
-
-        element.append(div);
+        ItemBuilder.debugItemInDOM(this, element);
     }
 }
