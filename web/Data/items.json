@@ -1,10 +1,1 @@
-[
-  {
-    "baseName": "Basketball",
-    "rules": [1,2,3,4,5,6,7,8]
-  },
-  {
-    "baseName": "Baseball",
-    "rules": [10,2,3,4,5,6,7,8]
-  }
-]
+[{"baseName":"Basketball","rules":[46,51,1,31,35,14,11]},{"baseName":"Teapot","rules":[3,56,55,14,16,21,17,38,35]},{"baseName":"Fiduspawn","rules":[57,18,4,2,50,31]},{"baseName":"Pumpkin","rules":[21,38,58,22,0,3,9,55,13]}]

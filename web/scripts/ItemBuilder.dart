@@ -12,6 +12,8 @@ abstract class ItemBuilder {
     static TextAreaElement textAreaElement;
     static void go(Element element) {
         textAreaElement = new TextAreaElement();
+        textAreaElement.cols = 100;
+        textAreaElement.rows = 30;
         element.append(textAreaElement);
         syncOutput();
         for(Item item in Item.items) {
@@ -27,8 +29,13 @@ abstract class ItemBuilder {
         DivElement div = new DivElement()
             ..style.border="1px solid black";
 
+
         TextInputElement input = new TextInputElement()..value = item.baseName;
         div.append(input);
+        input.onChange.listen((Event e) {
+            item.baseName = input.value;
+            syncOutput();
+        });
 
         int i = 0;
         for(Rule rule in item.rules) {

@@ -54,4 +54,8 @@ you must not let the opponents get their object to a specific side of the field,
 you must touch the opponents with the object, true
 you must let the opponents object touch out of bounds, true
 you must not let your objects be destroyed, false
+you must be polite, true
+your object can spawn offspring, true
+you must ignore the object, true
+you must not ignore the object, false
 
