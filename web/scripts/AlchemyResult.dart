@@ -1,15 +1,15 @@
 
 
-import 'Item.dart';
+import 'RuleSet.dart';
 import 'Rule.dart';
 
 abstract class AlchemyResult {
     //no matter what, it's the first item that gets shit shoved into it and all other items that are removed
     //in sim, assume only two items at a time. but can support anding 3 or more things at a time
-    List<Item> items;
-    Item result;
+    List<RuleSet> items;
+    RuleSet result;
 
-    AlchemyResult(List<Item> this.items) {
+    AlchemyResult(List<RuleSet> this.items) {
         combine();
         capAt8();
     }
@@ -31,13 +31,13 @@ abstract class AlchemyResult {
 }
 
 class AlchemyResultAND extends AlchemyResult {
-    AlchemyResultAND(List<Item> items) : super(items);
+    AlchemyResultAND(List<RuleSet> items) : super(items);
 
     ///AND takes both functionality and appearance from both things.
     @override
     void combine() {
-        result = new Item("${items[0]}-${items[1]}", new Set());
-        for(Item item in items) {
+        result = new RuleSet("${items[0]}-${items[1]}",items[0].imageLocation, new Set());
+        for(RuleSet item in items) {
             //every other rule
             List<Rule> listRules = item.rules.toList();
             for(int j = 0; j<listRules.length-1; j+=2) {
@@ -50,7 +50,7 @@ class AlchemyResultAND extends AlchemyResult {
 }
 
 class AlchemyResultOR extends AlchemyResult {
-    AlchemyResultOR(List<Item> items) : super(items);
+    AlchemyResultOR(List<RuleSet> items) : super(items);
 
     ///OR takes  functionality from first and appearance from second. ignores all other items.
     @override
@@ -73,7 +73,7 @@ class AlchemyResultOR extends AlchemyResult {
 
 //spoken only of in legend, but totally fucking theoretically possible
 class AlchemyResultXOR extends AlchemyResult {
-    AlchemyResultXOR(List<Item> items) : super(items);
+    AlchemyResultXOR(List<RuleSet> items) : super(items);
 
     //XOR is where you have traits ONLY if they only show up in one place, not two.
     @override

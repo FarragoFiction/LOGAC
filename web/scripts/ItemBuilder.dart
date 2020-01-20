@@ -5,7 +5,7 @@ display all items in a big pile, each item has its own builder that lets you cha
 text area on top that constantly updates json array */
 import 'dart:html';
 
-import 'Item.dart';
+import 'RuleSet.dart';
 import 'Rule.dart';
 
 abstract class ItemBuilder {
@@ -16,16 +16,16 @@ abstract class ItemBuilder {
         textAreaElement.rows = 30;
         element.append(textAreaElement);
         syncOutput();
-        for(Item item in Item.items) {
+        for(RuleSet item in RuleSet.items) {
             makeBuilder(item, element);
         }
     }
 
     static void syncOutput() {
-        textAreaElement.text = Item.allJSON();
+        textAreaElement.text = RuleSet.allJSON();
     }
 
-    static void makeBuilder(Item item, Element element) {
+    static void makeBuilder(RuleSet item, Element element) {
         DivElement div = new DivElement()
             ..style.border="1px solid black";
 
@@ -56,7 +56,7 @@ abstract class ItemBuilder {
         element.append(div);
     }
 
-    static SelectElement addRuleDropDown(Item item, int selectedIndex) {
+    static SelectElement addRuleDropDown(RuleSet item, int selectedIndex) {
         SelectElement ret = new SelectElement();
         for(int i = 0; i<Rule.rules.length; i++) {
             Rule rule = Rule.rules[i];
@@ -66,7 +66,7 @@ abstract class ItemBuilder {
         return ret;
     }
 
-    static void debugItemInDOM(Item item, Element element) {
+    static void debugItemInDOM(RuleSet item, Element element) {
         DivElement div = new DivElement()
             ..text = item.baseName
             ..style.border="1px solid black";
