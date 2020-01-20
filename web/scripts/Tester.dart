@@ -16,30 +16,90 @@ abstract class Tester {
 
         DivElement firstItem = new DivElement()..text = "First Item";
         output.append(firstItem);
-        SelectElement ret = new SelectElement();
+        SelectElement firstChoice = new SelectElement();
+        DivElement preview = new DivElement();
+        level.items.first.debugInDOM(preview);
+
         print("level items is ${level.items}");
         for(RuleSet item in level.items) {
             print(item);
             OptionElement option = new OptionElement(value: RuleSet.items.indexOf(item).toString())..text="${item.baseName}";
-            ret.append(option);
+            firstChoice.append(option);
         }
-        firstItem.append(ret);
+        firstItem.append(firstChoice);
+        firstItem.append(preview);
+
+        firstChoice.onChange.listen((Event e) {
+            RuleSet first = RuleSet.items[int.parse(firstChoice.selectedOptions.first.value)];
+            preview.text = "";
+            first.debugInDOM(preview);
+
+        });
         DivElement secondItem = new DivElement()..text = "Second Item";
         output.append(secondItem);
-        SelectElement ret2 = new SelectElement();
+        SelectElement secondChoice = new SelectElement();
+        DivElement preview2 = new DivElement();
+        level.items.first.debugInDOM(preview2);
+
         for(RuleSet item in level.items) {
             OptionElement option = new OptionElement(value: RuleSet.items.indexOf(item).toString())..text="${item.baseName}";
-            ret2.append(option);
+            secondChoice.append(option);
         }
-        secondItem.append(ret2);
+        secondItem.append(secondChoice);
+        secondItem.append(preview2);
+        secondChoice.onChange.listen((Event e) {
+            RuleSet first = RuleSet.items[int.parse(secondChoice.selectedOptions.first.value)];
+            preview2.text = "";
+            first.debugInDOM(preview2);
+
+        });
+
+        ButtonElement and = new ButtonElement()..text = "AND";
+        ButtonElement or = new ButtonElement()..text = "OR";
+        ButtonElement xor = new ButtonElement()..text = "XOR";
+        output.append(and);
+        output.append(or);
+        output.append(xor);
+        DivElement results = new DivElement()..text = "Proposed Ruleset:";
+        output.append(results);
+
+        and.onClick.listen((Event e) {
+            results.text = "Proposed Ruleset:";
+            RuleSet first = RuleSet.items[int.parse(firstChoice.selectedOptions.first.value)];
+            RuleSet second = RuleSet.items[int.parse(secondChoice.selectedOptions.first.value)];
+
+            AlchemyResult result = new AlchemyResultAND(<RuleSet>[first,second]);
+            result.result.debugInDOM(results);
+            teamsJudgement(results,level, result.result);
+        });
+
+        or.onClick.listen((Event e) {
+            results.text = "Proposed Ruleset:";
+            RuleSet first = RuleSet.items[int.parse(firstChoice.selectedOptions.first.value)];
+            RuleSet second = RuleSet.items[int.parse(secondChoice.selectedOptions.first.value)];
+
+            AlchemyResult result = new AlchemyResultOR(<RuleSet>[first,second]);
+            result.result.debugInDOM(results);
+            teamsJudgement(results,level, result.result);
+        });
+
+        xor.onClick.listen((Event e) {
+            results.text = "Proposed Ruleset:";
+            RuleSet first = RuleSet.items[int.parse(firstChoice.selectedOptions.first.value)];
+            RuleSet second = RuleSet.items[int.parse(secondChoice.selectedOptions.first.value)];
+
+            AlchemyResult result = new AlchemyResultAND(<RuleSet>[first,second]);
+            result.result.debugInDOM(results);
+            teamsJudgement(results,level, result.result);
+        });
 
 
+    }
 
-        /*DivElement judge12 = new DivElement()..text = "Does Team1 approve of ${resultOR2.result.baseName}? ${final1.result.approveOfOtherRuleSet(resultOR2.result)}";
-  DivElement judge22 = new DivElement()..text = "Does Team2 approve of the ${resultOR2.result.baseName}? ${final2.result.approveOfOtherRuleSet(resultOR2.result)}";
-  output.append(judge12);
-  output.append(judge22);
-  */
-
+    static void teamsJudgement(Element element, Level level, RuleSet proposedRuleset) {
+        bool firstTeamApproves = level.team1.approveOfOtherRuleSet(proposedRuleset);
+        bool secondTeamApproves = level.team2.approveOfOtherRuleSet(proposedRuleset);
+        DivElement judgement = new DivElement()..text = "Team1: ${firstTeamApproves?'Approves':'Riots'}, Team2: ${secondTeamApproves?'Approves':'Riots'}.  ${(firstTeamApproves && secondTeamApproves)?'Victory!!!':'Try Again'}";
+        element.append(judgement);
     }
 }

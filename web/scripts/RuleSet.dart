@@ -56,14 +56,14 @@ class RuleSet {
         }
     }
 
-    int approveOfOtherRuleSet(RuleSet other) {
+    bool approveOfOtherRuleSet(RuleSet other) {
         int approvalRating = 0;
         for(Rule rule in rules) {
             if(other.rules.contains(rule)) {
                 approvalRating ++;
             }
         }
-        return approvalRating;
+        return approvalRating>4;
     }
 
     static void debugAllInDom(Element element) {

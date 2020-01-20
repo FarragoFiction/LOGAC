@@ -12,7 +12,7 @@ void main() async {
   await Rule.slurpRules();
   await RuleSet.slurpItems();
   //Item.debugAllInDom(querySelector("#output"));
-  //ItemBuilder.go(querySelector("#output"));
+  ItemBuilder.go(querySelector("#output"));
   Tester.testDropDown();
 }
 
