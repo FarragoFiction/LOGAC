@@ -11,6 +11,7 @@ import 'Rule.dart';
 abstract class ItemBuilder {
     static TextAreaElement textAreaElement;
     static void go(Element element) {
+        element.text = "";
         textAreaElement = new TextAreaElement();
         textAreaElement.cols = 100;
         textAreaElement.rows = 30;
@@ -27,6 +28,7 @@ abstract class ItemBuilder {
 
     static void makeBuilder(RuleSet item, Element element) {
         DivElement div = new DivElement()
+            ..style.padding="10px"
             ..style.border="1px solid black";
 
 
@@ -34,6 +36,16 @@ abstract class ItemBuilder {
         div.append(input);
         input.onChange.listen((Event e) {
             item.baseName = input.value;
+            syncOutput();
+        });
+
+        TextInputElement input2 = new TextInputElement()..value = item.imageLocation;
+        div.append(input2);
+        ImageElement image = new ImageElement(src: item.imageLocation);
+        div.append(image);
+        input2.onChange.listen((Event e) {
+            item.imageLocation = input2.value;
+            image.src = item.imageLocation;
             syncOutput();
         });
 
@@ -72,6 +84,8 @@ abstract class ItemBuilder {
             ..style.border="1px solid black";
 
         int i = 0;
+        ImageElement image = new ImageElement(src: item.imageLocation);
+        div.append(image);
         for(Rule rule in item.rules) {
             i++;
             div.append(new DivElement()..text = "$i: ${rule.applyObjectToPhraseDebug(item.baseName)}");

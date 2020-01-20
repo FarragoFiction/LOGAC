@@ -9,11 +9,43 @@ import 'scripts/Tester.dart';
 void main() async {
   Game game = new Game();
   //game.display(querySelector("#output"));
+  wireUpTestControls();
+  debugAll();
+
+}
+
+void wireUpTestControls() {
+  Element controls = querySelector("#controls");
+  ButtonElement build = new ButtonElement()..text = "Build Items"..onClick.listen((Event e)=> buildItems());
+  ButtonElement view = new ButtonElement()..text = "View Items"..onClick.listen((Event e)=> debugAll());
+  ButtonElement game = new ButtonElement()..text = "Play GameTest"..onClick.listen((Event e)=> gameTest());
+  controls.append(build);
+  controls.append(view);
+  controls.append(game);
+
+
+}
+
+void reset() async {
   await Rule.slurpRules();
   await RuleSet.slurpItems();
-  //Item.debugAllInDom(querySelector("#output"));
+}
+
+
+void buildItems() async{
+  await reset();
   ItemBuilder.go(querySelector("#output"));
-  Tester.testDropDown();
+}
+
+
+void debugAll() async{
+  await reset();
+  RuleSet.debugAllInDom(querySelector("#output"));
+}
+
+void gameTest() async {
+  await reset();
+  Tester.testDropDown(querySelector("#output"));
 }
 
 

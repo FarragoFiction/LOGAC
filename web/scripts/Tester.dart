@@ -6,8 +6,8 @@ import 'RuleSet.dart';
 
 abstract class Tester {
 
-    static void testDropDown(){
-        DivElement output = querySelector("#output");
+    static void testDropDown(Element output){
+        output.text = "";
 
         Level level = Level.makeLevelAroundObject(RuleSet.items.first,0);
         //display the two teams, display a drop down of items, display three buttons for alchemy, then display result

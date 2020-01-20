@@ -41,8 +41,8 @@ class RuleSet {
   }
 
     static void slurpItems() async {
+      items.clear();
         String data = await http.read('/Data/items.json');
-        print("data for items is $data");
         var jsonData = jsonDecode(data);
         for(dynamic json in jsonData) {
             String baseName = json["baseName"];
@@ -67,6 +67,7 @@ class RuleSet {
     }
 
     static void debugAllInDom(Element element) {
+        element.text = "";
         for(RuleSet item in items) {
             item.debugInDOM(element);
         }

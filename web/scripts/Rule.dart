@@ -21,10 +21,10 @@ abstract class Rule {
     String applyObjectToPhraseDebug(String item);
 
     static void slurpRules() async {
+        rules.clear();
         String data = await http.read('/Data/rules.csv');
         List<String> lines = data.split("\n");
         for(String line in lines) {
-            print("line is $line");
             if(line.trim().isNotEmpty) {
                 List<String> parts = line.split(",");
                 if (parts[1].contains("true")) {
@@ -44,7 +44,6 @@ class PermissiveRule extends Rule {
     }
 
   String applyObjectToPhraseDebug(String item) {
-      print("applying $item");
       return "$PermissiveRule: ${_phrase.replaceAll('${Rule.OBJECTKEY}','$item')}";
   }
 }
@@ -56,7 +55,6 @@ class RestrictiveRule extends Rule{
     }
 
   String applyObjectToPhraseDebug(String item) {
-        print("applying $item");
       return "$RestrictiveRule: ${_phrase.replaceAll('${Rule.OBJECTKEY}','$item')}";
   }
 }
