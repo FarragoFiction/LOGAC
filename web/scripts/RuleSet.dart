@@ -63,7 +63,8 @@ class RuleSet {
                 approvalRating ++;
             }
         }
-        return approvalRating>4;
+        print("$baseName's approval rating for this ruleset ${other.baseName} is $approvalRating");
+        return approvalRating>=4;
     }
 
     static void debugAllInDom(Element element) {

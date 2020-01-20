@@ -14,7 +14,7 @@ abstract class Tester {
         level.team1.debugInDOM(output);
         level.team2.debugInDOM(output);
 
-        DivElement firstItem = new DivElement()..text = "First Item";
+        DivElement firstItem = new DivElement()..text = "First Item"..style.display="inline-block";;
         output.append(firstItem);
         SelectElement firstChoice = new SelectElement();
         DivElement preview = new DivElement();
@@ -35,7 +35,7 @@ abstract class Tester {
             first.debugInDOM(preview);
 
         });
-        DivElement secondItem = new DivElement()..text = "Second Item";
+        DivElement secondItem = new DivElement()..text = "Second Item"..style.display="inline-block";
         output.append(secondItem);
         SelectElement secondChoice = new SelectElement();
         DivElement preview2 = new DivElement();

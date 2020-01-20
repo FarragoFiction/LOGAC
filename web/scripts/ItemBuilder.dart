@@ -4,7 +4,8 @@ TODO:
 display all items in a big pile, each item has its own builder that lets you change name and then pick up to 8 traits from drop down
 text area on top that constantly updates json array */
 import 'dart:html';
-
+import 'package:CommonLib/Colours.dart';
+import 'package:CommonLib/Random.dart';
 import 'RuleSet.dart';
 import 'Rule.dart';
 
@@ -81,6 +82,8 @@ abstract class ItemBuilder {
     static void debugItemInDOM(RuleSet item, Element element) {
         DivElement div = new DivElement()
             ..text = item.baseName
+            ..style.display="inline-block"
+            ..style.width="250px"
             ..style.border="1px solid black";
 
         int i = 0;
@@ -88,7 +91,11 @@ abstract class ItemBuilder {
         div.append(image);
         for(Rule rule in item.rules) {
             i++;
-            div.append(new DivElement()..text = "$i: ${rule.applyObjectToPhraseDebug(item.baseName)}");
+            Random rand = new Random(Rule.rules.indexOf(rule));
+            Colour bgColor = new Colour(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
+            Colour foregroundColor = new Colour.hsv(bgColor.hue, 255-bgColor.value, bgColor.saturation);
+
+            div.append(new DivElement()..text = "$i: ${rule.applyObjectToPhraseDebug(item.baseName)}"..style.backgroundColor="${bgColor.toStyleString()}"..style.color="${foregroundColor.toStyleString()}");
         }
 
         element.append(div);

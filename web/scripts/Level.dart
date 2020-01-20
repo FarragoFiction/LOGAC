@@ -12,6 +12,8 @@ class Level {
     Level(String itemName, this.team1, this.team2, this.items) {
         team1.baseName = itemName;
         team2.baseName = itemName;
+        //they at least need to believe they are playing the same game
+        team2.imageLocation = team1.imageLocation;
     }
 
     bool suggestRuleset(RuleSet suggestion) {
