@@ -32,12 +32,18 @@ abstract class ItemBuilder {
 
         int i = 0;
         for(Rule rule in item.rules) {
-            i++;
-            DivElement ruleDiv = new DivElement()..text = "Rule $i:";
+            DivElement ruleDiv = new DivElement()..text = "Rule ${i+1}:";
             div.append(ruleDiv);
             SelectElement select = addRuleDropDown(item,Rule.rules.indexOf(rule));
             div.append(select);
-            //TODO do onchange
+            select.onChange.listen((Event e) {
+                Rule newRule =Rule.rules[int.parse(select.selectedOptions.first.value)];
+                //sets don't care about order so why should i
+                item.rules.remove(rule);
+                item.rules.add(newRule);
+                syncOutput();
+            });
+            i++;
         }
 
         element.append(div);
@@ -47,7 +53,7 @@ abstract class ItemBuilder {
         SelectElement ret = new SelectElement();
         for(int i = 0; i<Rule.rules.length; i++) {
             Rule rule = Rule.rules[i];
-            OptionElement option = new OptionElement(value: i.toString(), selected: selectedIndex==i)..text=rule.toString();
+            OptionElement option = new OptionElement(value: i.toString(), selected: selectedIndex==i)..text="$i:${rule.toString()}";
             ret.append(option);
         }
         return ret;
