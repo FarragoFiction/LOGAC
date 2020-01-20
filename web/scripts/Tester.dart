@@ -69,6 +69,7 @@ abstract class Tester {
             RuleSet second = RuleSet.items[int.parse(secondChoice.selectedOptions.first.value)];
 
             AlchemyResult result = new AlchemyResultAND(<RuleSet>[first,second]);
+            level.suggestRuleset(result.result);
             result.result.debugInDOM(results);
             teamsJudgement(results,level, result.result);
         });
@@ -79,6 +80,7 @@ abstract class Tester {
             RuleSet second = RuleSet.items[int.parse(secondChoice.selectedOptions.first.value)];
 
             AlchemyResult result = new AlchemyResultOR(<RuleSet>[first,second]);
+            level.suggestRuleset(result.result);
             result.result.debugInDOM(results);
             teamsJudgement(results,level, result.result);
         });
@@ -89,6 +91,7 @@ abstract class Tester {
             RuleSet second = RuleSet.items[int.parse(secondChoice.selectedOptions.first.value)];
 
             AlchemyResult result = new AlchemyResultAND(<RuleSet>[first,second]);
+            level.suggestRuleset(result.result);
             result.result.debugInDOM(results);
             teamsJudgement(results,level, result.result);
         });
@@ -99,7 +102,7 @@ abstract class Tester {
     static void teamsJudgement(Element element, Level level, RuleSet proposedRuleset) {
         bool firstTeamApproves = level.team1.approveOfOtherRuleSet(proposedRuleset);
         bool secondTeamApproves = level.team2.approveOfOtherRuleSet(proposedRuleset);
-        DivElement judgement = new DivElement()..text = "Team1: ${firstTeamApproves?'Approves':'Riots'}, Team2: ${secondTeamApproves?'Approves':'Riots'}.  ${(firstTeamApproves && secondTeamApproves)?'Victory!!!':'Try Again'}";
+        DivElement judgement = new DivElement()..text = "Team1: ${firstTeamApproves?'Approves':'Riots'}, Team2: ${secondTeamApproves?'Approves':'Riots'}.  ${(level.suggestRuleset(proposedRuleset))?'Victory!!!':'Try Again'}";
         element.append(judgement);
     }
 }

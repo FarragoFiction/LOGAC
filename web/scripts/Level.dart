@@ -6,11 +6,20 @@ import 'RuleSet.dart';
 class Level {
     RuleSet team1;
     RuleSet team2;
+    RuleSet currentSuggestion;
     List<RuleSet> items = new List<RuleSet>();
 
     Level(String itemName, this.team1, this.team2, this.items) {
         team1.baseName = itemName;
         team2.baseName = itemName;
+    }
+
+    bool suggestRuleset(RuleSet suggestion) {
+        currentSuggestion = suggestion;
+        currentSuggestion.baseName = team1.baseName;
+        bool firstTeamApproves = team1.approveOfOtherRuleSet(currentSuggestion);
+        bool secondTeamApproves = team2.approveOfOtherRuleSet(currentSuggestion);
+        return firstTeamApproves && secondTeamApproves;
     }
 
     static Level makeLevelAroundObject(RuleSet item, int seed) {
