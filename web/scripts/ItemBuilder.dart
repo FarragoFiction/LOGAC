@@ -92,6 +92,8 @@ abstract class ItemBuilder {
             ..text = item.baseName
             ..style.display="inline-block"
             ..style.width="250px"
+            ..style.height = "500px"
+            ..style.verticalAlign="top"
             ..style.border="1px solid black";
 
         int i = 0;
