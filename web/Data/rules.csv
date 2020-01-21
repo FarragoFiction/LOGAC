@@ -63,6 +63,9 @@ you can't move before the object is hit, false
 you must allow the object to echolocate, true
 you are not allowed to embezzle the object, false
 you must give the object a tribute, true
+you must not give the object a tribute, false
 you must not touch the object with your hands, false
+you may pile the object, true
+you may not pile the object, false
 
 
