@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:html';
+import 'package:CommonLib/Random.dart';
 import 'package:http/http.dart' as http;
 import 'ItemBuilder.dart';
 import 'Rule.dart';
@@ -15,7 +16,23 @@ class RuleSet {
     Iterable<Rule> get restrictiveRules => rules.where((Rule a) => (a is RestrictiveRule));
 
   RuleSet(String this.baseName, String this.imageLocation,Set<Rule> this.rules, {bool this.isCopy}) {
+      if(this.rules == null) {
+          randomRules();
+      }
         items.add(this);
+  }
+
+  void randomRules() {
+      rules = new Set<Rule>();
+      List<Rule> possibleRules = new List<Rule>.from(Rule.rules);
+      Random rand = new Random();
+      for(int i = 0; i<8; i++) {
+          if(possibleRules.isNotEmpty) {
+              Rule pick = rand.pickFrom(possibleRules);
+              possibleRules.remove(pick);
+              rules.add(pick);
+          }
+      }
   }
 
     RuleSet copy() {

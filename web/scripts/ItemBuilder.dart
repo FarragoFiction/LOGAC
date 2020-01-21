@@ -18,6 +18,14 @@ abstract class ItemBuilder {
         textAreaElement.rows = 30;
         element.append(textAreaElement);
         syncOutput();
+        DivElement newItems = new DivElement();
+        element.append(newItems);
+        ButtonElement button = new ButtonElement()..text = "New Item"..onClick.listen((Event e) {
+            RuleSet newItem = new RuleSet("New Item", "", null);
+            makeBuilder(newItem, newItems);
+            syncOutput();
+        });
+        element.append(button);
         for(RuleSet item in RuleSet.items) {
             makeBuilder(item, element);
         }

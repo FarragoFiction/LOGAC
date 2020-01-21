@@ -58,4 +58,6 @@ you must be polite, true
 your object can spawn offspring, true
 you must ignore the object, true
 you must not ignore the object, false
+you can't attack an opponent if they are in a safe zone, false
+you can't move before the object is hit, false
 
