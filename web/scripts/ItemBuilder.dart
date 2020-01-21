@@ -21,7 +21,7 @@ abstract class ItemBuilder {
         DivElement newItems = new DivElement();
         element.append(newItems);
         ButtonElement button = new ButtonElement()..text = "New Item"..onClick.listen((Event e) {
-            RuleSet newItem = new RuleSet("New Item", "", null);
+            RuleSet newItem = new RuleSet("New Item", "", null, baseItem: true);
             makeBuilder(newItem, newItems);
             syncOutput();
         });
