@@ -26,7 +26,7 @@ abstract class ItemBuilder {
             syncOutput();
         });
         element.append(button);
-        for(RuleSet item in RuleSet.items) {
+        for(RuleSet item in RuleSet.items.values) {
             makeBuilder(item, element);
         }
     }

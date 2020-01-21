@@ -6,20 +6,22 @@ import 'ItemBuilder.dart';
 import 'Rule.dart';
 
 class RuleSet {
-    static List<RuleSet> items =new List<RuleSet>();
+    static Map<String,RuleSet> items =new Map<String,RuleSet>();
     String baseName;
     String imageLocation;
+    //baes items go into the item pile
+    bool baseItem;
     bool isCopy;
     //a set is like a list but each thing in it happens exactly one or zero times
     Set<Rule>  rules = new Set<Rule>();
     Iterable<Rule> get permissiveRules => rules.where((Rule a) => (a is PermissiveRule));
     Iterable<Rule> get restrictiveRules => rules.where((Rule a) => (a is RestrictiveRule));
 
-  RuleSet(String this.baseName, String this.imageLocation,Set<Rule> this.rules, {bool this.isCopy}) {
+  RuleSet(String this.baseName, String this.imageLocation,Set<Rule> this.rules, {bool this.isCopy, bool this.baseItem=false}) {
       if(this.rules == null) {
           randomRules();
       }
-        items.add(this);
+        if(baseItem) items[baseName] =this;
   }
 
   void randomRules() {
@@ -51,13 +53,14 @@ class RuleSet {
 
   static String allJSON() {
         List<Map<String, dynamic>> list = new List<Map<String, dynamic>>();
-        for(RuleSet item in items) {
+        for(RuleSet item in items.values) {
             list.add(item.toJSON());
         }
         return jsonEncode(list);
   }
 
     static void slurpItems() async {
+      print("slurping items");
       items.clear();
         String data = await http.read('/Data/items.json');
         var jsonData = jsonDecode(data);
@@ -68,7 +71,7 @@ class RuleSet {
             for(int id in json["rules"]) {
                 rules.add(Rule.rules[id]);
             }
-            new RuleSet(baseName, imageLocation,new Set.from(rules));
+            new RuleSet(baseName, imageLocation,new Set.from(rules), baseItem: true);
 
         }
     }
@@ -86,7 +89,7 @@ class RuleSet {
 
     static void debugAllInDom(Element element) {
         element.text = "";
-        for(RuleSet item in items) {
+        for(RuleSet item in items.values) {
             item.debugInDOM(element);
         }
     }

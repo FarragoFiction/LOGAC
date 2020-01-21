@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'scripts/AlchemyResult.dart';
 import 'scripts/Game.dart';
+import 'scripts/Level.dart';
 import 'scripts/RuleSet.dart';
 import 'scripts/ItemBuilder.dart';
 import 'scripts/Rule.dart';
@@ -29,6 +30,7 @@ void wireUpTestControls() {
 void reset() async {
   await Rule.slurpRules();
   await RuleSet.slurpItems();
+  await Level.initLevels();
 }
 
 

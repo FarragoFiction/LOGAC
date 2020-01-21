@@ -4,12 +4,14 @@ import 'AlchemyResult.dart';
 import 'Level.dart';
 import 'RuleSet.dart';
 class Level {
+    static List<Level> levels = new List<Level>();
     RuleSet team1;
     RuleSet team2;
     RuleSet currentSuggestion;
     List<RuleSet> items = new List<RuleSet>();
 
     Level(String itemName, this.team1, this.team2, this.items) {
+        levels.add(this);
         team1.baseName = itemName;
         team2.baseName = itemName;
         //they at least need to believe they are playing the same game
@@ -24,9 +26,23 @@ class Level {
         return firstTeamApproves && secondTeamApproves;
     }
 
+    //TODO possibly make this data instead
+    static initLevels() {
+        print("initializing levels");
+        levels.clear();
+        List<String> levelNames = <String>["Basketball","Baseball"];
+        int i = 0;
+        for(String name in levelNames) {
+            i++;
+            RuleSet set = RuleSet.items[name];
+            makeLevelAroundObject(set,i);
+        }
+    }
+
     static Level makeLevelAroundObject(RuleSet item, int seed) {
+        print("making level around item $item");
         Random rand = new Random(seed);
-        List<RuleSet> possibleItems = new List.from(RuleSet.items);
+        List<RuleSet> possibleItems = new List<RuleSet>.from(RuleSet.items.values);
         possibleItems.remove(item);
         RuleSet secondItem = rand.pickFrom(possibleItems);
         possibleItems.remove(secondItem);
@@ -35,11 +51,11 @@ class Level {
         RuleSet fourthItem = rand.pickFrom(possibleItems);
         possibleItems.remove(fourthItem);
 
-        AlchemyResult resultOR = new AlchemyResultAND(<RuleSet>[item,secondItem])..result;
-        AlchemyResult resultOR2 = new AlchemyResultAND(<RuleSet>[secondItem,item])..result;
+        AlchemyResult result = new AlchemyResultAND(<RuleSet>[item,secondItem])..result;
+        AlchemyResult result2 = new AlchemyResultAND(<RuleSet>[secondItem,item])..result;
 
-        AlchemyResult final1 = new AlchemyResultAND(<RuleSet>[resultOR.result,thirdItem]);
-        AlchemyResult final2 = new AlchemyResultAND(<RuleSet>[resultOR2.result, fourthItem]);
+        AlchemyResult final1 = new AlchemyResultAND(<RuleSet>[result.result,thirdItem]);
+        AlchemyResult final2 = new AlchemyResultAND(<RuleSet>[result2.result, fourthItem]);
         List<RuleSet> items = <RuleSet>[item, secondItem, thirdItem, fourthItem];
 
         for(int i = 0; i<4; i++) {

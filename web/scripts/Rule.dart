@@ -21,6 +21,7 @@ abstract class Rule {
     String applyObjectToPhraseDebug(String item);
 
     static void slurpRules() async {
+        print("slurping rules");
         rules.clear();
         String data = await http.read('/Data/rules.csv');
         List<String> lines = data.split("\n");

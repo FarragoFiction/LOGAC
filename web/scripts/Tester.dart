@@ -8,8 +8,26 @@ abstract class Tester {
 
     static void testDropDown(Element output){
         output.text = "";
+        DivElement levelShit = new DivElement();
+        final SelectElement selectLevel = new SelectElement();
+        output.append(selectLevel);
+        output.append(levelShit);
+        for(int i = 0; i< Level.levels.length; i++) {
+            Level level = Level.levels[i];
+            OptionElement option = new OptionElement(value: i.toString())..text="${level.team1.baseName}";
+            selectLevel.append(option);
+        }
 
-        Level level = Level.makeLevelAroundObject(RuleSet.items.first,0);
+        selectLevel.onChange.listen((Event e) {
+            Level first = Level.levels[int.parse(selectLevel.selectedOptions.first.value)];
+            testLevel(first,levelShit);
+        });
+        testLevel(Level.levels.first, levelShit);
+
+    }
+
+    static void testLevel(Level level, Element output) {
+        output.text = "";
         //display the two teams, display a drop down of items, display three buttons for alchemy, then display result
         level.team1.debugInDOM(output);
         level.team2.debugInDOM(output);
@@ -20,17 +38,15 @@ abstract class Tester {
         DivElement preview = new DivElement();
         level.items.first.debugInDOM(preview);
 
-        print("level items is ${level.items}");
         for(RuleSet item in level.items) {
-            print(item);
-            OptionElement option = new OptionElement(value: RuleSet.items.indexOf(item).toString())..text="${item.baseName}";
+            OptionElement option = new OptionElement(value: item.baseName)..text="${item.baseName}";
             firstChoice.append(option);
         }
         firstItem.append(firstChoice);
         firstItem.append(preview);
 
         firstChoice.onChange.listen((Event e) {
-            RuleSet first = RuleSet.items[int.parse(firstChoice.selectedOptions.first.value)];
+            RuleSet first = RuleSet.items[firstChoice.selectedOptions.first.value];
             preview.text = "";
             first.debugInDOM(preview);
 
@@ -42,13 +58,13 @@ abstract class Tester {
         level.items.first.debugInDOM(preview2);
 
         for(RuleSet item in level.items) {
-            OptionElement option = new OptionElement(value: RuleSet.items.indexOf(item).toString())..text="${item.baseName}";
+            OptionElement option = new OptionElement(value: item.baseName)..text="${item.baseName}";
             secondChoice.append(option);
         }
         secondItem.append(secondChoice);
         secondItem.append(preview2);
         secondChoice.onChange.listen((Event e) {
-            RuleSet first = RuleSet.items[int.parse(secondChoice.selectedOptions.first.value)];
+            RuleSet first = RuleSet.items[secondChoice.selectedOptions.first.value];
             preview2.text = "";
             first.debugInDOM(preview2);
 
@@ -95,7 +111,6 @@ abstract class Tester {
             result.result.debugInDOM(results);
             teamsJudgement(results,level, result.result);
         });
-
 
     }
 
