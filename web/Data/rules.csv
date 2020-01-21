@@ -67,5 +67,7 @@ you must not give the object a tribute, false
 you must not touch the object with your hands, false
 you may pile the object, true
 you may not pile the object, false
+you must do sweet tricks with the object, true
+you can't touch the ground, false
 
 
