@@ -75,8 +75,8 @@ class Team {
     }
 
 
-    static  Palette get randomPalette {
-        Random rand = new Random();
+    static  Palette  randomPalette(int seed) {
+        Random rand = new Random(seed);
         Palette ret = new Palette()
             ..add("lightaccent",new Colour.fromStyleString("#44244d"))
             ..add("darkaccent",new Colour.fromStyleString("#271128"))
