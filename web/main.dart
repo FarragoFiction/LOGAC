@@ -12,7 +12,7 @@ void main() async {
   Game game = new Game();
   //game.display(querySelector("#output"));
   wireUpTestControls();
-  debugAll();
+  owlTest();
 
 }
 

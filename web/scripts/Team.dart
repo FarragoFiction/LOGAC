@@ -76,7 +76,28 @@ class Team {
         print("output is $output and idle is $idle");
          output.append(idle);
          output.append(flap);
-         output.append(owls.first.sprite);
+         DivElement spacer =new DivElement();
+         output.append(spacer);
+         for(Owl owl in owls) {
+             DivElement container = new DivElement()..style.display="inline-block";
+             output.append(container);
+             container.append(owl.sprite);
+             ButtonElement button = new ButtonElement()..text = "Flap???";
+             container.append(button);
+             bool flap = false;
+             button.onClick.listen((Event e) {
+                 flap = !flap;
+                 if(flap) {
+                    button.text = "NO FLAP!!!";
+                    owl.flapTime();
+                 }else {
+                    button.text = "Flap???";
+                    owl.idleTime();
+                 }
+             });
+         }
+        DivElement space2r =new DivElement();
+        output.append(space2r);
     }
 
     static void loadFrames() async {
