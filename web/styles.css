@@ -15,6 +15,11 @@ html, body {
 .owl{
     width: 220px;
     height: 220px;
+    animation: owl 0.8s steps(6) infinite;
+}
+
+@keyframes owl {
+   100% { background-position: -1320px; }
 }
 
 .game{
