@@ -81,8 +81,8 @@ abstract class Tester {
 
         and.onClick.listen((Event e) {
             results.text = "Proposed Ruleset:";
-            RuleSet first = RuleSet.items[int.parse(firstChoice.selectedOptions.first.value)];
-            RuleSet second = RuleSet.items[int.parse(secondChoice.selectedOptions.first.value)];
+            RuleSet first = RuleSet.items[(firstChoice.selectedOptions.first.value)];
+            RuleSet second = RuleSet.items[secondChoice.selectedOptions.first.value];
 
             AlchemyResult result = new AlchemyResultAND(<RuleSet>[first,second]);
             level.suggestRuleset(result.result);
@@ -92,8 +92,8 @@ abstract class Tester {
 
         or.onClick.listen((Event e) {
             results.text = "Proposed Ruleset:";
-            RuleSet first = RuleSet.items[int.parse(firstChoice.selectedOptions.first.value)];
-            RuleSet second = RuleSet.items[int.parse(secondChoice.selectedOptions.first.value)];
+            RuleSet first = RuleSet.items[firstChoice.selectedOptions.first.value];
+            RuleSet second = RuleSet.items[secondChoice.selectedOptions.first.value];
 
             AlchemyResult result = new AlchemyResultOR(<RuleSet>[first,second]);
             level.suggestRuleset(result.result);
@@ -103,8 +103,8 @@ abstract class Tester {
 
         xor.onClick.listen((Event e) {
             results.text = "Proposed Ruleset:";
-            RuleSet first = RuleSet.items[int.parse(firstChoice.selectedOptions.first.value)];
-            RuleSet second = RuleSet.items[int.parse(secondChoice.selectedOptions.first.value)];
+            RuleSet first = RuleSet.items[firstChoice.selectedOptions.first.value];
+            RuleSet second = RuleSet.items[secondChoice.selectedOptions.first.value];
 
             AlchemyResult result = new AlchemyResultAND(<RuleSet>[first,second]);
             level.suggestRuleset(result.result);

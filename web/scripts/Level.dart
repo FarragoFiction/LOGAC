@@ -1,3 +1,4 @@
+import 'Rule.dart';
 import 'RuleSet.dart';
 import 'package:CommonLib/Random.dart';
 import 'AlchemyResult.dart';
@@ -56,6 +57,15 @@ class Level {
 
         AlchemyResult final1 = new AlchemyResultAND(<RuleSet>[result.result,thirdItem]);
         AlchemyResult final2 = new AlchemyResultAND(<RuleSet>[result2.result, fourthItem]);
+
+        if(final1.result.rules.length <8) {
+            augmentRules(final1, final2);
+        }
+
+        if(final2.result.rules.length<8) {
+            augmentRules(final2, final1);
+        }
+
         List<RuleSet> items = <RuleSet>[item, secondItem, thirdItem, fourthItem];
 
         for(int i = 0; i<4; i++) {
@@ -67,5 +77,19 @@ class Level {
         }
         return new Level(item.baseName,final1.result, final2.result, items);
 
+    }
+
+    static void augmentRules(AlchemyResult final1, AlchemyResult final2) {
+       Random rand = new Random(13); //its less important that its literally random, just consistent and i don't wanna always pick the first one
+       //don't just add a rule that you already have
+      Set<Rule> diff = final2.result.rules.difference(final1.result.rules);
+      final int rulesNeeded = 8-final1.result.rules.length;
+      for(int i = 0; i< rulesNeeded; i++) {
+          Rule choice = rand.pickFrom(diff);
+          final1.result.rules.add(choice);
+      }
+       if(final1.result.rules.length < 8) {
+           throw "WTF? I thought we fixed this, rules are ${final1.result.rules.length}";
+       }
     }
 }

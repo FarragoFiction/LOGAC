@@ -1,0 +1,5 @@
+class Owl {
+    //OWLS HAVE A PALETTE (RANDOMLY GENERATED PER TEAM)
+
+
+}

@@ -23,7 +23,7 @@ abstract class Rule {
     static void slurpRules() async {
         print("slurping rules");
         rules.clear();
-        String data = await http.read('/Data/rules.csv');
+        String data = await http.read('Data/rules.csv');
         List<String> lines = data.split("\n");
         for(String line in lines) {
             if(line.trim().isNotEmpty) {
@@ -45,7 +45,7 @@ class PermissiveRule extends Rule {
     }
 
   String applyObjectToPhraseDebug(String item) {
-      return "$PermissiveRule: ${_phrase.replaceAll('${Rule.OBJECTKEY}','$item')}";
+      return "PermissiveRule: ${_phrase.replaceAll('${Rule.OBJECTKEY}','$item')}";
   }
 }
 
@@ -56,6 +56,6 @@ class RestrictiveRule extends Rule{
     }
 
   String applyObjectToPhraseDebug(String item) {
-      return "$RestrictiveRule: ${_phrase.replaceAll('${Rule.OBJECTKEY}','$item')}";
+      return "RestrictiveRule: ${_phrase.replaceAll('${Rule.OBJECTKEY}','$item')}";
   }
 }

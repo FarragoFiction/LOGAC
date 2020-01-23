@@ -20,9 +20,13 @@ void wireUpTestControls() {
   ButtonElement build = new ButtonElement()..text = "Build Items"..onClick.listen((Event e)=> buildItems());
   ButtonElement view = new ButtonElement()..text = "View Items"..onClick.listen((Event e)=> debugAll());
   ButtonElement game = new ButtonElement()..text = "Play GameTest"..onClick.listen((Event e)=> gameTest());
+  ButtonElement owl = new ButtonElement()..text = "Owl Test"..onClick.listen((Event e)=> owlTest());
+
   controls.append(build);
   controls.append(view);
   controls.append(game);
+  controls.append(owl);
+
 
 
 }
@@ -37,6 +41,11 @@ void reset() async {
 void buildItems() async{
   await reset();
   ItemBuilder.go(querySelector("#output"));
+}
+
+void owlTest() async{
+  await reset();
+  querySelector("#output")..text="todo";
 }
 
 

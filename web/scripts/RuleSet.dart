@@ -62,7 +62,7 @@ class RuleSet {
     static void slurpItems() async {
       print("slurping items");
       items.clear();
-        String data = await http.read('/Data/items.json');
+        String data = await http.read('Data/items.json');
         var jsonData = jsonDecode(data);
         for(dynamic json in jsonData) {
             String baseName = json["baseName"];
