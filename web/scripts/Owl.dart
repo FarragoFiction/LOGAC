@@ -13,11 +13,23 @@ class Owl {
 
     void flapTime() {
         sprite.style.backgroundImage="url(${flap.toDataUrl()})";
+    }
 
+    void celebrateTime() {
+        sprite.classes.remove("turnways");
+        sprite.classes.add("happy-owl");
     }
 
     void idleTime() {
         sprite.style.backgroundImage="url(${idle.toDataUrl()})";
+    }
+
+    void turnways() {
+        if(sprite.classes.contains("turnways")) {
+            sprite.classes.remove("turnways");
+        }else {
+            sprite.classes.add("turnways");
+        }
     }
 
 

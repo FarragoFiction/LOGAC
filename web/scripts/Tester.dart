@@ -29,8 +29,14 @@ abstract class Tester {
     static void testLevel(Level level, Element output) {
         output.text = "";
         //display the two teams, display a drop down of items, display three buttons for alchemy, then display result
-        level.team1.ruleSet.debugInDOM(output);
-        level.team2.ruleSet.debugInDOM(output);
+        DivElement team1 = new DivElement()..style.display= "inline-block"..style.border="1px solid black";
+        output.append(team1);
+        team1.append(level.team1.owls.first.sprite);
+        level.team1.ruleSet.debugInDOM(team1);
+        DivElement team2 = new DivElement()..style.display= "inline-block"..style.border="1px solid black";
+        output.append(team2);
+        team2.append(level.team2.owls.first.sprite);
+        level.team2.ruleSet.debugInDOM(team2);
 
         DivElement firstItem = new DivElement()..text = "First Item"..style.display="inline-block";;
         output.append(firstItem);

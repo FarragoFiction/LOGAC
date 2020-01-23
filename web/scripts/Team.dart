@@ -49,7 +49,13 @@ class Team {
                 approvalRating ++;
             }
         }
-        return approvalRating>=4;
+        bool ret= approvalRating>=4;
+        if(ret) {
+            owls.forEach((Owl owl)=> owl.celebrateTime());
+        }else {
+            owls.forEach((Owl owl)=> owl.flapTime());
+        }
+        return ret;
     }
 
     void setupOwls() {
@@ -57,7 +63,9 @@ class Team {
         owls.add(new Owl(flap, idle,0,0));
         owls.add(new Owl(flap, idle,0,0));
         owls.add(new Owl(flap, idle,0,0));
-
+        if(!left) {
+            owls.forEach((Owl owl) => owl.turnways());
+        }
     }
 
     void setupPaletteFrames() {
@@ -94,6 +102,12 @@ class Team {
                     button.text = "Flap???";
                     owl.idleTime();
                  }
+             });
+
+             ButtonElement turn = new ButtonElement()..text = "Turnways???";
+             container.append(turn);
+             turn.onClick.listen((Event e) {
+                 owl.turnways();
              });
          }
         DivElement space2r =new DivElement();
