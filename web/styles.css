@@ -12,6 +12,11 @@ html, body {
   padding: 20px;
 }
 
+.owl{
+    width: 220px;
+    height: 220px;
+}
+
 .game{
     width: 720px;
     height: 720px;

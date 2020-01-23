@@ -21,6 +21,7 @@ class Team {
     String name;
     CanvasElement flap;
     CanvasElement idle;
+    bool left;
 
     RuleSet ruleSet;
     List<Owl> owls = new List<Owl>();
@@ -36,8 +37,9 @@ class Team {
         ..add("darkjersey",new Colour.fromStyleString("#eba900"))
         ..add("lightjersey",new Colour.fromStyleString("#ffd800"));
 
-    Team(String this.name, RuleSet this.ruleSet, Palette this.palette) {
+    Team(String this.name, RuleSet this.ruleSet, Palette this.palette, bool this.left) {
         setupPaletteFrames();
+        setupOwls();
     }
 
     bool approveOfOtherRuleSet(RuleSet other) {
@@ -48,6 +50,14 @@ class Team {
             }
         }
         return approvalRating>=4;
+    }
+
+    void setupOwls() {
+        //TODO are we on left or right?
+        owls.add(new Owl(flap, idle,0,0));
+        owls.add(new Owl(flap, idle,0,0));
+        owls.add(new Owl(flap, idle,0,0));
+
     }
 
     void setupPaletteFrames() {
@@ -66,6 +76,7 @@ class Team {
         print("output is $output and idle is $idle");
          output.append(idle);
          output.append(flap);
+         output.append(owls.first.sprite);
     }
 
     static void loadFrames() async {
