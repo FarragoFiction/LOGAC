@@ -14,7 +14,7 @@ abstract class Tester {
         output.append(levelShit);
         for(int i = 0; i< Level.levels.length; i++) {
             Level level = Level.levels[i];
-            OptionElement option = new OptionElement(value: i.toString())..text="${level.team1.baseName}";
+            OptionElement option = new OptionElement(value: i.toString())..text="${level.team1.ruleSet.baseName}";
             selectLevel.append(option);
         }
 
@@ -29,8 +29,8 @@ abstract class Tester {
     static void testLevel(Level level, Element output) {
         output.text = "";
         //display the two teams, display a drop down of items, display three buttons for alchemy, then display result
-        level.team1.debugInDOM(output);
-        level.team2.debugInDOM(output);
+        level.team1.ruleSet.debugInDOM(output);
+        level.team2.ruleSet.debugInDOM(output);
 
         DivElement firstItem = new DivElement()..text = "First Item"..style.display="inline-block";;
         output.append(firstItem);

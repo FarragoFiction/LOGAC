@@ -5,6 +5,7 @@ import 'scripts/Level.dart';
 import 'scripts/RuleSet.dart';
 import 'scripts/ItemBuilder.dart';
 import 'scripts/Rule.dart';
+import 'scripts/Team.dart';
 import 'scripts/Tester.dart';
 
 void main() async {
@@ -32,6 +33,7 @@ void wireUpTestControls() {
 }
 
 void reset() async {
+  await Team.loadFrames();
   await Rule.slurpRules();
   await RuleSet.slurpItems();
   await Level.initLevels();
@@ -45,7 +47,7 @@ void buildItems() async{
 
 void owlTest() async{
   await reset();
-  querySelector("#output")..text="todo";
+  Level.debugAllInDom(querySelector("#output"));
 }
 
 

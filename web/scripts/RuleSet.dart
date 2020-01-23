@@ -76,16 +76,7 @@ class RuleSet {
         }
     }
 
-    bool approveOfOtherRuleSet(RuleSet other) {
-        int approvalRating = 0;
-        for(Rule rule in rules) {
-            if(other.rules.contains(rule)) {
-                approvalRating ++;
-            }
-        }
-        print("$baseName's approval rating for this ruleset ${other.baseName} is $approvalRating");
-        return approvalRating>=4;
-    }
+
 
     static void debugAllInDom(Element element) {
         element.text = "";

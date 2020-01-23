@@ -1,27 +1,30 @@
+import 'dart:html';
+
 import 'Rule.dart';
 import 'RuleSet.dart';
 import 'package:CommonLib/Random.dart';
 import 'AlchemyResult.dart';
 import 'Level.dart';
 import 'RuleSet.dart';
+import 'Team.dart';
 class Level {
     static List<Level> levels = new List<Level>();
-    RuleSet team1;
-    RuleSet team2;
+    Team team1;
+    Team team2;
     RuleSet currentSuggestion;
     List<RuleSet> items = new List<RuleSet>();
 
     Level(String itemName, this.team1, this.team2, this.items) {
         levels.add(this);
-        team1.baseName = itemName;
-        team2.baseName = itemName;
+        team1.ruleSet.baseName = itemName;
+        team2.ruleSet.baseName = itemName;
         //they at least need to believe they are playing the same game
-        team2.imageLocation = team1.imageLocation;
+        team2.ruleSet.imageLocation = team1.ruleSet.imageLocation;
     }
 
     bool suggestRuleset(RuleSet suggestion) {
         currentSuggestion = suggestion;
-        currentSuggestion.baseName = team1.baseName;
+        currentSuggestion.baseName = team1.ruleSet.baseName;
         bool firstTeamApproves = team1.approveOfOtherRuleSet(currentSuggestion);
         bool secondTeamApproves = team2.approveOfOtherRuleSet(currentSuggestion);
         return firstTeamApproves && secondTeamApproves;
@@ -75,7 +78,9 @@ class Level {
                 items.add(pick);
             }
         }
-        return new Level(item.baseName,final1.result, final2.result, items);
+        Team team1 = new Team("Team1",final1.result, Team.randomPalette);
+        Team team2 = new Team("Team2", final2.result,Team.randomPalette);
+        return new Level(item.baseName,team1, team2, items);
 
     }
 
@@ -91,5 +96,13 @@ class Level {
        if(final1.result.rules.length < 8) {
            throw "WTF? I thought we fixed this, rules are ${final1.result.rules.length}";
        }
+    }
+
+    static void debugAllInDom(Element output) {
+        output.text = "";
+        for(final Level level in Level.levels) {
+            level.team1.debugInDom(output);
+            level.team2.debugInDom(output);
+        }
     }
 }
