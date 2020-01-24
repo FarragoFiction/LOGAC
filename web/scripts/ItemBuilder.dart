@@ -18,7 +18,7 @@ abstract class ItemBuilder {
         textAreaElement.rows = 30;
         element.append(textAreaElement);
         syncOutput();
-        DivElement newItems = new DivElement();
+        DivElement newItems = new DivElement()..text = "Item Count: ${RuleSet.items.length}";;
         element.append(newItems);
         ButtonElement button = new ButtonElement()..text = "New Item"..onClick.listen((Event e) {
             RuleSet newItem = new RuleSet("New Item", "", null, baseItem: true);

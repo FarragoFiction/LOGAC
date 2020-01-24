@@ -21,8 +21,11 @@ class Owl {
     }
 
     void celebrateTime() {
-        sprite.classes.remove("turnways");
-        sprite.classes.add("happy-owl");
+        if(sprite.classes.contains("happy-owl")) {
+            sprite.classes.remove("happy-owl");
+        }else {
+            sprite.classes.add("happy-owl");
+        }
     }
 
     void idleTime() {

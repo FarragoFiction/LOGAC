@@ -34,7 +34,7 @@ class Level {
     static initLevels() {
         print("initializing levels");
         levels.clear();
-        List<String> levelNames = <String>["Basketball","Baseball","Soccer","Skateboard","Tennis","Pool"];
+        List<String> levelNames = <String>["Basketball","Baseball","Soccer","Skateboard","Tennis","Pool","Poker Hand", "Horse"];
         int i = 0;
         for(String name in levelNames) {
             i++;
