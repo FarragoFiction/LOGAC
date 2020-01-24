@@ -13,6 +13,11 @@ class Owl {
 
     void flapTime() {
         sprite.style.backgroundImage="url(${flap.toDataUrl()})";
+        if(sprite.classes.contains("angryowl")) {
+            sprite.classes.remove("angryowl");
+        }else {
+            sprite.classes.add("angryowl");
+        }
     }
 
     void celebrateTime() {

@@ -27,10 +27,16 @@ html, body {
     animation: owl 0.4s steps(6) infinite;
 }
 
+.angryowl{
+    width: 220px;
+    height: 220px;
+    animation: owl 0.2s steps(6) infinite;
+}
+
 .happy-owl{
     width: 220px;
     height: 220px;
-    animation: flipout 0.4s steps(6) infinite;
+    animation: flipout 0.4s steps(1) infinite;
 }
 
 @keyframes owl {
@@ -38,12 +44,24 @@ html, body {
 }
 
 @keyframes flipout {
-   100% { -moz-transform: scaleX(-1);
-              -o-transform: scaleX(-1);
-              -webkit-transform: scaleX(-1);
-              transform: scaleX(-1);
-              filter: FlipH;
-              -ms-filter: "FlipH"; }
+   0% { -moz-transform: scaleX(1);
+              -o-transform: scaleX(1);
+              -webkit-transform: scaleX(1);
+              transform: scaleX(1);
+        }
+
+    50% { -moz-transform: scaleX(-1);
+                  -o-transform: scaleX(-1);
+                  -webkit-transform: scaleX(-1);
+                  transform: scaleX(-1);
+
+    }
+
+    100% { -moz-transform: scaleX(1);
+                      -o-transform: scaleX(1);
+                      -webkit-transform: scaleX(1);
+                      transform: scaleX(1);
+     }
 }
 
 .game{

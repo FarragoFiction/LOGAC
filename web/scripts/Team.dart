@@ -109,6 +109,20 @@ class Team {
              turn.onClick.listen((Event e) {
                  owl.turnways();
              });
+
+             bool celebrate = false;
+             ButtonElement button2 = new ButtonElement()..text = "Celebrate???";
+             container.append(button2);
+             button2.onClick.listen((Event e) {
+                 celebrate = !celebrate;
+                 if(celebrate) {
+                     button2.text = "Default";
+                     owl.celebrateTime();
+                 }else {
+                     button2.text = "Celebrate???";
+                     owl.celebrateTime();
+                 }
+             });
          }
         DivElement space2r =new DivElement();
         output.append(space2r);
