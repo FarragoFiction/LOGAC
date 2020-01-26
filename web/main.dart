@@ -17,7 +17,7 @@ void main() async {
   }
 
   wireUpTestControls();
-  gameTest();
+  realGame();
 
 }
 
