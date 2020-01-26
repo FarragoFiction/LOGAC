@@ -12,6 +12,9 @@ int levelAlg = 4;
 dynamic lastChoice;
 
 void main() async {
+  if(Uri.base.queryParameters['levelAlg'] !=null) {
+    levelAlg = int.parse(Uri.base.queryParameters['levelAlg']);
+  }
   Game game = new Game();
   //game.display(querySelector("#output"));
   wireUpTestControls();
