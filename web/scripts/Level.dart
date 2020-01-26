@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html';
 
 import 'Rule.dart';
@@ -48,7 +49,7 @@ class Level {
 
     //AND AND AND AND is fully solvable, so is OR OR AND AND, AND OR AND AND, AND XOR AND AND
     static List<dynamic> getFinalRulesets(int seed, RuleSet item, RuleSet secondItem, RuleSet thirdItem, RuleSet fourthItem, int algNumber) {
-        if(algNumber > 3) {
+        if(algNumber > 4) {
             algNumber = seed%4; //makes it fair, not random
         }
 
@@ -60,6 +61,8 @@ class Level {
             return alg3(item, secondItem, thirdItem, fourthItem, algNumber);
         }else if(algNumber == 3){
             return alg4(item, secondItem, thirdItem, fourthItem, algNumber);
+        }else if(algNumber == 4){
+            return algFail(item, secondItem, thirdItem, fourthItem, algNumber);
         }
     }
 
@@ -98,6 +101,19 @@ class Level {
         AlchemyResult final2 = new AlchemyResultAND(<RuleSet>[result2.result, fourthItem]);
         return[final1, final2, algNumber];
     }
+
+    static List<dynamic> algFail(RuleSet item, RuleSet secondItem, RuleSet thirdItem, RuleSet fourthItem, int algNumber) {
+        AlchemyResult result = new AlchemyResultXOR(<RuleSet>[item,item])..result;
+        AlchemyResult result2 = new AlchemyResultXOR(<RuleSet>[secondItem,secondItem])..result;
+
+        AlchemyResult final1 = new AlchemyResultXOR(<RuleSet>[result.result,result.result]);
+        AlchemyResult final2 = new AlchemyResultXOR(<RuleSet>[result2.result, result2.result]);
+        final1.result.rules.add(new RestrictiveRule("You lose."));
+        final2.result.rules.add(new RestrictiveRule("You lose."));
+
+        return[final1, final2, algNumber];
+    }
+
 
     static Level makeLevelAroundObject(RuleSet item, int seed, int algorithm) {
         print("making level around item $item");
@@ -148,9 +164,6 @@ class Level {
           Rule choice = rand.pickFrom(diff);
           final1.result.rules.add(choice);
       }
-       if(final1.result.rules.length < 8) {
-           throw "WTF? I thought we fixed this, rules are ${final1.result.rules.length}";
-       }
     }
 
     void debugInDom(Element output){
@@ -165,18 +178,20 @@ class Level {
         checkBeatableDebug(beatableValue);
     }
 
-    void checkBeatableDebug(Element element) async {
-        beatable().then((bool result){
+    Future<void> checkBeatableDebug(Element element) async {
+        //bool result = await beatable();
+        new Timer(new Duration(milliseconds: 1000), () async {
+            bool result =  await beatable();
             element.text = "Beatable: $result";
             element.style.backgroundColor = result ? "green":"red";
         });
+
 
     }
 
     static void debugAllInDom(Element output) {
         output.text = "";
         for(final Level level in Level.levels) {
-            level.debugInDom(output);
             level.debugInDom(output);
         }
     }
@@ -191,6 +206,7 @@ class Level {
 
     //might take a chunk of time
     Future<bool> beatable() async {
+        print("Is level ${team1.ruleSet.baseName} beatable?");
         bool beaten = false;
         for(RuleSet item1 in items) {
             for(RuleSet item2 in items) {
@@ -206,6 +222,8 @@ class Level {
                         if(suggestRuleset(result.result)) {
                             beaten = true;
                             break;
+                        }else {
+                            print("$item1 and $item2 can not be combined to win");
                         }
                     }
                 }

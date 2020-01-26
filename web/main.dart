@@ -8,7 +8,7 @@ import 'scripts/Rule.dart';
 import 'scripts/Team.dart';
 import 'scripts/Tester.dart';
 
-int levelAlg = 4;
+int levelAlg = 5;
 dynamic lastChoice;
 
 void main() async {
@@ -75,7 +75,7 @@ void setLevelGenAlg() {
   SelectElement select = new SelectElement();
   algSelector.append(select);
   querySelector("#controls").append(algSelector);
-  for(int i = 0; i<5; i++) {
+  for(int i = 0; i<6; i++) {
     OptionElement option = new OptionElement(value: i.toString(), selected: i==levelAlg)..text =i.toString();
     select.append(option);
   }
