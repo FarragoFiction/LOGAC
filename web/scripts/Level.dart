@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:html';
 
+import 'package:CommonLib/Colours.dart';
+
 import 'Rule.dart';
 import 'RuleSet.dart';
 import 'package:CommonLib/Random.dart';
@@ -11,6 +13,8 @@ import 'Team.dart';
 class Level {
     static List<Level> levels = new List<Level>();
 
+    Colour color;
+
 
     Team team1;
     Team team2;
@@ -18,7 +22,7 @@ class Level {
     RuleSet currentSuggestion;
     List<RuleSet> items = new List<RuleSet>();
 
-    Level(String itemName, this.team1, this.team2, this.items, int this.alg) {
+    Level(String itemName, this.team1, this.team2, this.items, int this.alg, this.color) {
         levels.add(this);
         team1.ruleSet.baseName = itemName;
         team2.ruleSet.baseName = itemName;
@@ -38,12 +42,14 @@ class Level {
     static initLevels(int algorithm) {
         print("initializing levels");
         levels.clear();
-        List<String> levelNames = <String>["Basketball","Baseball","Soccer","Skateboard","Tennis","Pool","Poker Hand", "Horse"];
+        final List<String> levelNames = <String>["Basketball","Baseball","Soccer","Skateboard","Tennis","Pool","Poker Hand", "Horse"];
+        final List<String> colors = <String>["#ff8189","#383df6","#81f0ff","#ac81ff","#e9fcff","#81ffb2","#ffc181", "#ffe18f"];
+
         int i = 0;
         for(String name in levelNames) {
             i++;
             RuleSet set = RuleSet.items[name];
-            makeLevelAroundObject(set,i, algorithm);
+            makeLevelAroundObject(set,i, algorithm, new Colour.fromStyleString(colors[i-1]));
         }
     }
 
@@ -115,7 +121,7 @@ class Level {
     }
 
 
-    static Level makeLevelAroundObject(RuleSet item, int seed, int algorithm) {
+    static Level makeLevelAroundObject(RuleSet item, int seed, int algorithm, Colour color) {
         print("making level around item $item");
         Random rand = new Random(seed);
         List<RuleSet> possibleItems = new List<RuleSet>.from(RuleSet.items.values);
@@ -151,7 +157,7 @@ class Level {
         }
         Team team1 = new Team("Team1",final1.result, Team.randomPalette(rand.nextInt()), true);
         Team team2 = new Team("Team2", final2.result,Team.randomPalette(rand.nextInt()),false);
-        return new Level(item.baseName,team1, team2, items, algorithm);
+        return new Level(item.baseName,team1, team2, items, algorithm,color);
 
     }
 

@@ -15,8 +15,7 @@ void main() async {
   if(Uri.base.queryParameters['levelAlg'] !=null) {
     levelAlg = int.parse(Uri.base.queryParameters['levelAlg']);
   }
-  Game game = new Game();
-  //game.display(querySelector("#output"));
+
   wireUpTestControls();
   gameTest();
 
@@ -30,6 +29,7 @@ void wireUpTestControls() {
   ButtonElement game = new ButtonElement()..text = "Play GameTest"..onClick.listen((Event e)=> gameTest());
   ButtonElement owl = new ButtonElement()..text = "Owl Test"..onClick.listen((Event e)=> owlTest());
   ButtonElement level = new ButtonElement()..text = "Level Test"..onClick.listen((Event e)=> levelTest());
+  ButtonElement real = new ButtonElement()..text = "Real GAme"..onClick.listen((Event e)=> realGame());
 
   controls.append(build);
   controls.append(view);
@@ -37,6 +37,7 @@ void wireUpTestControls() {
   controls.append(owl);
   controls.append(level);
 
+  controls.append(real);
 
 
 
@@ -98,6 +99,13 @@ void gameTest() async {
   lastChoice = gameTest;
   await reset();
   Tester.testDropDown(querySelector("#output"));
+}
+
+void realGame() async {
+  lastChoice = realGame;
+  await reset();
+  Game game = new Game();
+  game.start(querySelector("#output"));
 }
 
 
