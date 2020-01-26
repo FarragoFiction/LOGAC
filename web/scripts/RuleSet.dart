@@ -37,9 +37,6 @@ class RuleSet {
       }
   }
 
-    RuleSet copy() {
-        return new RuleSet(baseName, imageLocation,new Set<Rule>.from(rules),isCopy:true);
-    }
 
     String  toString() => baseName;
 

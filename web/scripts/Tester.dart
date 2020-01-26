@@ -112,7 +112,7 @@ abstract class Tester {
             RuleSet first = RuleSet.items[firstChoice.selectedOptions.first.value];
             RuleSet second = RuleSet.items[secondChoice.selectedOptions.first.value];
 
-            AlchemyResult result = new AlchemyResultAND(<RuleSet>[first,second]);
+            AlchemyResult result = new AlchemyResultXOR(<RuleSet>[first,second]);
             level.suggestRuleset(result.result);
             result.result.debugInDOM(results);
             teamsJudgement(results,level, result.result);

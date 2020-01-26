@@ -1,5 +1,7 @@
 
 
+import 'package:CommonLib/Random.dart';
+
 import 'RuleSet.dart';
 import 'Rule.dart';
 
@@ -18,6 +20,8 @@ abstract class AlchemyResult {
         //8 is the arc number here
         if(result.rules.length > 8) {
             List<Rule> listRules = result.rules.toList();
+            //shuffle it, but the same item will be shuffled the same way each time
+            listRules.shuffle(new Random(result.baseName.codeUnitAt(0)));
             listRules.removeRange(8, result.rules.length);
             result.rules = new Set.from(listRules);
         }
@@ -55,7 +59,7 @@ class AlchemyResultOR extends AlchemyResult {
     ///OR takes  functionality from first and appearance from second. ignores all other items.
     @override
     void combine() {
-        result = items[0].copy();
+        result = new RuleSet("${items[0]}-${items[1]}",items[0].imageLocation, new Set());
         result.baseName = "${items[0]}-${items[1]}";
         result.rules.clear();
 
@@ -78,7 +82,7 @@ class AlchemyResultXOR extends AlchemyResult {
     //XOR is where you have traits ONLY if they only show up in one place, not two.
     @override
     void combine() {
-        result = items[0].copy();
+        result = new RuleSet("${items[0]}-${items[1]}",items[0].imageLocation, new Set());
         result.baseName = "${items[0]}-${items[1]}";
         //all the things first item has that second doesn't
         result.rules = items[0].rules.difference(items[1].rules);
