@@ -28,6 +28,8 @@ abstract class Tester {
 
     static void testLevel(Level level, Element output) {
         output.text = "";
+        DivElement label = new DivElement()..text = "Algorithm: ${level.alg}";
+        output.append(label);
         //display the two teams, display a drop down of items, display three buttons for alchemy, then display result
         DivElement team1 = new DivElement()..style.display= "inline-block"..style.border="1px solid black";
         output.append(team1);
