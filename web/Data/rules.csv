@@ -65,8 +65,8 @@ do not embezzle the object, false
 give the object a tribute, true
 do not give the object a tribute, false
 no hands, false
-you may pile the object, true
-you may not pile the object, false
+pile the object, true
+do not pile the object, false
 do sweet tricks with the object, true
 do not touch the ground, false
 the object is magic, true
@@ -75,6 +75,6 @@ tenderize the object, true
 fear the object, true
 the object is secretly alive, true
 hide your objects, false
-you may race your object, true
+race your object, true
 lets be tangle buddies, true
 a winner is you, true
