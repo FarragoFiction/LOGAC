@@ -18,9 +18,9 @@ use fire on the object, true
 wash the object, true
 have multiple of the object, true
 kill the object, true
-interact with your opponents object directly, true
+touch your opponents object, true
 you have to care for your object, true
-harvest the object at the end of the game, true
+harvest the object, true
 do not eat the object, false
 do not throw the object, false
 do not pet the object, false
@@ -41,16 +41,16 @@ do not use fire on the object, false
 do not wash the object, false
 do not have multiple of the object, false
 do not kill the object, false
-do not interact with your opponents object directly, false
+do not interact with your opponents object, false
 do not care for your object, false
-do not harvest the object at the end of the game, false
+do not harvest the object, false
 get the object into a hole, true
-get the object to a specific side of the field, true
+get the object to a specific side, true
 not let the object touch you, false
 do not let the object touch out of bounds, false
 destroy all of your opponents objects, true
 do not let the opponents object into a hole, false
-do not let the opponents get their object to a specific side of the field, false
+do not let the opponents get their object to a specific side, false
 touch the opponents with the object, true
 let the opponents object touch out of bounds, true
 do not let your objects be destroyed, false
@@ -58,13 +58,13 @@ be polite, true
 your object can spawn offspring, true
 what object?, true
 do not ignore the object, false
-do not attack an opponent if they are in a safe zone, false
+do not attack a safe zone opponent, false
 do not move before the object is hit, false
- allow the object to echolocate, true
-you are not allowed to embezzle the object, false
- give the object a tribute, true
+allow the object to echolocate, true
+do not embezzle the object, false
+give the object a tribute, true
 do not give the object a tribute, false
-do not touch the object with your hands, false
+no hands, false
 you may pile the object, true
 you may not pile the object, false
 do sweet tricks with the object, true
@@ -74,7 +74,7 @@ do geometry with the object, true
 tenderize the object, true
 fear the object, true
 the object is secretly alive, true
-do not show your objects to your opponents, false
+hide your objects, false
 you may race your object, true
 lets be tangle buddies, true
 a winner is you, true

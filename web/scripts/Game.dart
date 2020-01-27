@@ -24,6 +24,7 @@ class Game {
         container.text = "";
 
         currentLevel.team1.displayRules(container,0);
+        currentLevel.team2.displayRules(container,1);
         currentLevel.team1.displayTeam(container,0);
         currentLevel.team2.displayTeam(container,1);
     }
