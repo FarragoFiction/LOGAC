@@ -109,3 +109,16 @@ position: absolute;
     bottom: 0px;
     right: 230px;
 }
+
+.rules0{
+    position: absolute;
+    top: 80px;
+    left: 70px;
+}
+
+.rule{
+    width: 140px;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: heavy;
+}

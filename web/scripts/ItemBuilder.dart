@@ -104,7 +104,6 @@ abstract class ItemBuilder {
             Random rand = new Random(Rule.rules.indexOf(rule));
             Colour bgColor = new Colour.hsv(rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
             Colour foregroundColor = new Colour.hsv(bgColor.hue, bgColor.saturation, bgColor.value-.5<.2?1.0:1.0-bgColor.value);
-            Colour outline = new Colour.hsv(1.0,1.0,1.0);
 
             div.append(new DivElement()..text = "$i: ${rule.applyObjectToPhraseDebug(item.baseName)}"..style.backgroundColor="${bgColor.toStyleString()}"..style.color="${foregroundColor.toStyleString()}");
         }

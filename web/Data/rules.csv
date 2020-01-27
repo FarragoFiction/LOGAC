@@ -1,80 +1,80 @@
-you can eat the object, true
-you can throw the object, true
-you can pet the object, true
-you can open the object, true
-you can ride the object, true
-you can look through the object, true
-you can sleep on the object, true
-you can jump, true
-you can fight, true
-you can water the object, true
-you can bounce the object, true
-you can steal the object, true
-you can move while you have the object, true
-you can leave the field, true
-you can give the object to others, true
-you can damage the object, true
-you can use fire on the object, true
-you can wash the object, true
-you can have multiple of the object, true
-you can kill the object, true
-you can interact with your opponents object directly, true
+eat the object, true
+throw the object, true
+pet the object, true
+open the object, true
+ride the object, true
+look through the object, true
+sleep on the object, true
+jump, true
+fight, true
+water the object, true
+bounce the object, true
+steal the object, true
+move while you have the object, true
+leave the field, true
+give the object to others, true
+damage the object, true
+use fire on the object, true
+wash the object, true
+have multiple of the object, true
+kill the object, true
+interact with your opponents object directly, true
 you have to care for your object, true
-you can harvest the object at the end of the game, true
-you can't eat the object, false
-you can't throw the object, false
-you can't pet the object, false
-you can't open the object, false
-you can't ride the object, false
-you can't look through the object, false
-you can't sleep on the object, false
-you can't jump, false
-you can't fight, false
-you can't water the object, false
-you can't bounce the object, false
-you can't steal the object, false
-you can't move while you have the object, false
-you can't leave the field, false
-you can't give the object to others, false
-you can't damage the object, false
-you can't use fire on the object, false
-you can't wash the object, false
-you can't have multiple of the object, false
-you can't kill the object, false
-you can't interact with your opponents object directly, false
-you can't care for your object, false
-you can't harvest the object at the end of the game, false
-you must get the object into a hole, true
-you must get the object to a specific side of the field, true
-you must not let the object touch you, false
-you must not let the object touch out of bounds, false
-you must destroy all of your opponents objects, true
-you must not let the opponents object into a hole, false
-you must not let the opponents get their object to a specific side of the field, false
-you must touch the opponents with the object, true
-you must let the opponents object touch out of bounds, true
-you must not let your objects be destroyed, false
-you must be polite, true
+harvest the object at the end of the game, true
+do not eat the object, false
+do not throw the object, false
+do not pet the object, false
+do not open the object, false
+do not ride the object, false
+do not look through the object, false
+do not sleep on the object, false
+do not jump, false
+do not fight, false
+do not water the object, false
+do not bounce the object, false
+do not steal the object, false
+do not move while you have the object, false
+do not leave the field, false
+do not give the object to others, false
+do not damage the object, false
+do not use fire on the object, false
+do not wash the object, false
+do not have multiple of the object, false
+do not kill the object, false
+do not interact with your opponents object directly, false
+do not care for your object, false
+do not harvest the object at the end of the game, false
+get the object into a hole, true
+get the object to a specific side of the field, true
+not let the object touch you, false
+do not let the object touch out of bounds, false
+destroy all of your opponents objects, true
+do not let the opponents object into a hole, false
+do not let the opponents get their object to a specific side of the field, false
+touch the opponents with the object, true
+let the opponents object touch out of bounds, true
+do not let your objects be destroyed, false
+be polite, true
 your object can spawn offspring, true
 what object?, true
-you must not ignore the object, false
-you can't attack an opponent if they are in a safe zone, false
-you can't move before the object is hit, false
-you must allow the object to echolocate, true
+do not ignore the object, false
+do not attack an opponent if they are in a safe zone, false
+do not move before the object is hit, false
+ allow the object to echolocate, true
 you are not allowed to embezzle the object, false
-you must give the object a tribute, true
-you must not give the object a tribute, false
-you must not touch the object with your hands, false
+ give the object a tribute, true
+do not give the object a tribute, false
+do not touch the object with your hands, false
 you may pile the object, true
 you may not pile the object, false
-you must do sweet tricks with the object, true
-you can't touch the ground, false
+do sweet tricks with the object, true
+do not touch the ground, false
 the object is magic, true
-you must do geometry with the object, true
-you can tenderize the object, true
-you can fear the object, true
+do geometry with the object, true
+tenderize the object, true
+fear the object, true
 the object is secretly alive, true
-you can't show your objects to your opponents, false
+do not show your objects to your opponents, false
 you may race your object, true
 lets be tangle buddies, true
 a winner is you, true

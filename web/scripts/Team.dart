@@ -80,6 +80,26 @@ class Team {
 
     }
 
+    void displayRules(Element parent, int teamNumber) {
+        DivElement ruleElement = new DivElement()
+            ..classes.add("rules$teamNumber");
+        parent.append(ruleElement);
+        int i = 0;
+        for (final Rule rule in ruleSet.rules) {
+            i++;
+            final Random rand = new Random(Rule.rules.indexOf(rule));
+            final Colour bgColor = new Colour.hsv(rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
+            final Colour foregroundColor = new Colour.hsv(bgColor.hue, bgColor.saturation, bgColor.value-.5<.2?1.0:1.0-bgColor.value);
+
+            DivElement div = new DivElement()
+                ..text = "$i: ${rule.applyObjectToPhrase(ruleSet.baseName)}"
+                ..style.backgroundColor="${bgColor.toStyleString()}"
+                ..style.color="${foregroundColor.toStyleString()}";
+            div.classes.add("rule");
+            ruleElement.append(div);
+        }
+    }
+
     void displayTeam(Element parent, int teamNumber) {
         for(int i=0; i<owls.length; i++) {
             Owl owl = owls[i];
