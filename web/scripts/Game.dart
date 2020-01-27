@@ -9,7 +9,8 @@ import 'Level.dart';
 
 class Game {
     Element container;
-    int width =720;
+    int width =1280;
+    int height = 642;
     Level currentLevel;
 
     Future<void> start(Element element) async {
@@ -19,14 +20,22 @@ class Game {
         await levelSelect();
     }
 
-    Future levelSelect() async {
+    void displayCurrentLevel() {
+        container.text = "";
+        currentLevel.team1.displayTeam(container,0);
+        currentLevel.team2.displayTeam(container,1);
+    }
+
+
+
+
+    Future<void> levelSelect() async {
         currentLevel = null;
         container.text = "";
-        CanvasElement canvas = new CanvasElement(width: width, height: width);
+        CanvasElement canvas = new CanvasElement(width: width, height: height);
         ImageElement levelSelect =  await Loader.getResource("images/levelSelect.png");
         canvas.context2D.drawImage(levelSelect,0,0);
         container.append(canvas);
-        //TODO do an on click (check ant sim) where it checks the color of the pixel clicked and loads the corresponding level
 
         canvas.onClick.listen((MouseEvent e) {
           final Rectangle rect = canvas.getBoundingClientRect();
@@ -48,7 +57,7 @@ class Game {
           }
 
           if(currentLevel != null) {
-              window.alert("You picked a level ${currentLevel.team1.ruleSet.baseName}!");
+              displayCurrentLevel();
           }
 
         });

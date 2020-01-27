@@ -18,6 +18,7 @@ class Level {
 
     Team team1;
     Team team2;
+    String get name => team1.ruleSet.baseName;
     int alg;
     RuleSet currentSuggestion;
     List<RuleSet> items = new List<RuleSet>();

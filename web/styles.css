@@ -65,9 +65,47 @@ html, body {
 }
 
 .game{
-    width: 720px;
-    height: 720px;
+    width: 1280px;
+    height: 642px;
+    position: relative;
     margin-left: auto;
     margin-right: auto;
     background:  url("images/background.png");
+}
+
+.owl0{
+    position: absolute;
+    bottom: 0px;
+    left: -30px;
+}
+
+.owl1{
+position: absolute;
+    bottom: 0px;
+    left: 90px;
+}
+
+.owl2{
+    position: absolute;
+    bottom: 5px;
+    left: 230px;
+}
+
+
+.owl3{
+    position: absolute;
+    bottom: 5px;
+    right: -30px;
+}
+
+.owl4{
+position: absolute;
+    bottom: 0px;
+    right: 90px;
+}
+
+.owl5{
+    position: absolute;
+    bottom: 0px;
+    right: 230px;
 }

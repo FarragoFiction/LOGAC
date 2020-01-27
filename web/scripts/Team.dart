@@ -80,6 +80,15 @@ class Team {
 
     }
 
+    void displayTeam(Element parent, int teamNumber) {
+        for(int i=0; i<owls.length; i++) {
+            Owl owl = owls[i];
+            owl.sprite.classes.add("owl${i+(owls.length*teamNumber)}");
+            parent.append(owl.sprite);
+    }
+
+    }
+
     void debugInDom(Element output) {
         print("output is $output and idle is $idle");
          output.append(idle);
