@@ -10,7 +10,7 @@ fight, true
 water the object, true
 bounce the object, true
 steal the object, true
-move while you have the object, true
+move with the object, true
 leave the field, true
 give the object away, true
 damage the object, true
@@ -41,7 +41,7 @@ do not use fire on the object, false
 do not wash the object, false
 do not have multiple of the object, false
 do not kill the object, false
-do not touch your opponents object, false
+do not touch enemy object, false
 do not care for your object, false
 do not harvest the object, false
 get the object into a hole, true
@@ -51,8 +51,8 @@ do not let the object escape, false
 destroy all of your opponents objects, true
 keep opponents object out of a hole, false
 keep opponents object to a specific side, false
-touch the opponents with the object, true
-let the opponents object escape, true
+touch enemies with the object, true
+let enemy objects escape, true
 do not let your objects be destroyed, false
 be polite, true
 your object can spawn offspring, true
