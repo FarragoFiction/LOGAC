@@ -27,6 +27,17 @@ class Game {
         currentLevel.team2.displayRules(container,1);
         currentLevel.team1.displayTeam(container,0);
         currentLevel.team2.displayTeam(container,1);
+        displayAlchemy();
+    }
+
+    void displayAlchemy() {
+        print("alchemy");
+        DivElement firstItemElement = new DivElement()..classes.add("firstItem");
+        DivElement secondItemElement = new DivElement()..classes.add("secondItem");
+        DivElement resultItemElement = new DivElement()..classes.add("resultItem");
+        container.append(firstItemElement);
+        container.append(secondItemElement);
+        container.append(resultItemElement);
     }
 
 
