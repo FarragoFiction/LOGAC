@@ -38,6 +38,15 @@ class Game {
         container.append(firstItemElement);
         container.append(secondItemElement);
         container.append(resultItemElement);
+
+        ButtonElement andButton = new ButtonElement()..text = "AND"..classes.add("andButton");;
+        ButtonElement orButton = new ButtonElement()..text = "OR"..classes.add("orButton");;
+        ButtonElement xorButton = new ButtonElement()..text = "XOR"..classes.add("xorButton");;
+        container.append(andButton);
+        container.append(orButton);
+        container.append(xorButton);
+
+
     }
 
 

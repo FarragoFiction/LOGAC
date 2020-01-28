@@ -12,7 +12,7 @@ bounce the object, true
 steal the object, true
 move while you have the object, true
 leave the field, true
-give the object to others, true
+give the object away, true
 damage the object, true
 use fire on the object, true
 wash the object, true
@@ -41,24 +41,24 @@ do not use fire on the object, false
 do not wash the object, false
 do not have multiple of the object, false
 do not kill the object, false
-do not interact with your opponents object, false
+do not touch your opponents object, false
 do not care for your object, false
 do not harvest the object, false
 get the object into a hole, true
 get the object to a specific side, true
 not let the object touch you, false
-do not let the object touch out of bounds, false
+do not let the object escape, false
 destroy all of your opponents objects, true
-do not let the opponents object into a hole, false
-do not let the opponents get their object to a specific side, false
+keep opponents object out of a hole, false
+keep opponents object to a specific side, false
 touch the opponents with the object, true
-let the opponents object touch out of bounds, true
+let the opponents object escape, true
 do not let your objects be destroyed, false
 be polite, true
 your object can spawn offspring, true
 what object?, true
 do not ignore the object, false
-do not attack a safe zone opponent, false
+do not attack a safe opponent, false
 do not move before the object is hit, false
 allow the object to echolocate, true
 do not embezzle the object, false

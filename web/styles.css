@@ -1,11 +1,13 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-
+@font-face {
+    font-family: nunito;
+    src: url("Fonts/nunito/Nunito-Regular.ttf");
+}
 html, body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'nunito', sans-serif;
 }
 
 #output {
@@ -129,8 +131,9 @@ position: absolute;
 .rule{
     width: 140px;
     padding: 5px;
-    font-size: 14px;
-    font-weight: heavy;
+    font-size: 16px;
+    height: 36px;
+    font-weight: 900;
     border: 1px solid rgba(0,0,0,0.2)
 }
 
@@ -142,6 +145,8 @@ position: absolute;
     position: absolute;
     top: 80px;
     left: 270px;
+    box-shadow: -10px 10px 20px #000000;
+
 }
 
 .secondItem{
@@ -152,6 +157,8 @@ position: absolute;
     position: absolute;
     top: 80px;
     right: 270px;
+    box-shadow: -10px 10px 20px #000000;
+
 }
 
 .resultItem{
@@ -162,4 +169,20 @@ position: absolute;
     position: absolute;
     top: 350px;
     left: 500px;
+    box-shadow: -10px 10px 20px #000000;
 }
+
+.andButton{
+    width: 100px;
+    height: 50px;
+    background: #ffd800;
+    border: 3px solid #d1a900;
+    position: absolute;
+    color: #383838;
+    top: 350px;
+    left: 500px;
+    border-radius: 8px;
+    font-weight: heavy;
+    box-shadow: -10px 10px 20px #000000;
+}
+
