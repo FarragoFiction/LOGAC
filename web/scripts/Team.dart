@@ -89,9 +89,10 @@ class Team {
             final Colour bgColor = new Colour.hsv(rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
             final Colour foregroundColor = new Colour.hsv(bgColor.hue, bgColor.saturation, bgColor.value-.5<.2?1.0:1.0-bgColor.value);
 
-            DivElement div = new DivElement()
-                ..text = "${rule.applyObjectToPhrase(ruleSet.baseName)}";
+            DivElement div = new DivElement();
             div.classes.add("rule");
+            SpanElement plzwork = new SpanElement()..text = "${rule.applyObjectToPhrase(ruleSet.baseName)}";
+            div.append(plzwork);
             ruleElement.append(div);
         }
     }
