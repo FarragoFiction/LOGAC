@@ -1,3 +1,5 @@
+import 'package:CommonLib/Colours.dart';
+import 'package:CommonLib/Random.dart';
 import 'package:http/http.dart' as http;
 abstract class Rule {
     static const String  OBJECTKEY = "object";
@@ -5,9 +7,14 @@ abstract class Rule {
     static List<Rule> rules = new List<Rule>();
     //i.e. "you may eat the object"
     String _phrase;
+    Colour bgColor;
+    Colour foregroundColor;
 
     Rule(this._phrase) {
         rules.add(this);
+        final Random rand = new Random(Rule.rules.indexOf(this));
+        bgColor = new Colour.hsv(rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
+        foregroundColor = new Colour.hsv(bgColor.hue, bgColor.saturation, bgColor.value-.5<.2?1.0:1.0-bgColor.value);
     }
 
     String toString() {

@@ -101,11 +101,9 @@ abstract class ItemBuilder {
         div.append(image);
         for(Rule rule in item.rules) {
             i++;
-            Random rand = new Random(Rule.rules.indexOf(rule));
-            Colour bgColor = new Colour.hsv(rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
-            Colour foregroundColor = new Colour.hsv(bgColor.hue, bgColor.saturation, bgColor.value-.5<.2?1.0:1.0-bgColor.value);
 
-            div.append(new DivElement()..text = "$i: ${rule.applyObjectToPhraseDebug(item.baseName)}"..style.backgroundColor="${bgColor.toStyleString()}"..style.color="${foregroundColor.toStyleString()}");
+
+            div.append(new DivElement()..text = "$i: ${rule.applyObjectToPhraseDebug(item.baseName)}"..style.backgroundColor="${rule.bgColor.toStyleString()}"..style.color="${rule.foregroundColor.toStyleString()}");
         }
 
         element.append(div);

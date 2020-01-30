@@ -90,9 +90,7 @@ class Team {
             final Colour foregroundColor = new Colour.hsv(bgColor.hue, bgColor.saturation, bgColor.value-.5<.2?1.0:1.0-bgColor.value);
 
             DivElement div = new DivElement()
-                ..text = "${rule.applyObjectToPhrase(ruleSet.baseName)}"
-                ..style.backgroundColor="${bgColor.toStyleString()}"
-                ..style.color="${foregroundColor.toStyleString()}";
+                ..text = "${rule.applyObjectToPhrase(ruleSet.baseName)}";
             div.classes.add("rule");
             ruleElement.append(div);
         }
