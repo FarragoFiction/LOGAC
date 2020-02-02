@@ -5,6 +5,7 @@ import 'package:LoaderLib/Loader.dart';
 import 'package:RenderingLib/RendereringLib.dart';
 
 import 'Level.dart';
+import 'RuleSet.dart';
 
 
 class Game {
@@ -27,7 +28,18 @@ class Game {
         currentLevel.team2.displayRules(container,1);
         currentLevel.team1.displayTeam(container,0);
         currentLevel.team2.displayTeam(container,1);
+        displayItems();
         displayAlchemy();
+    }
+
+    void displayItems() {
+        int i = 0;
+        for(RuleSet item in currentLevel.items) {
+            i++;
+            item.sprite.classes.add("item");
+            container.append(item.sprite);
+            item.sprite.style.left = "${300+(i*65)}px";
+        }
     }
 
     void displayAlchemy() {

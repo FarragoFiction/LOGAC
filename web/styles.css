@@ -75,6 +75,13 @@ html, body {
     background:  url("images/background.png");
 }
 
+.item{
+    position: absolute;
+    max-height: 100px;
+    bottom: 0px;
+    left: 300px;
+}
+
 .owl0{
     position: absolute;
     bottom: 0px;

@@ -11,6 +11,7 @@ class RuleSet {
     String imageLocation;
     //baes items go into the item pile
     bool baseItem;
+    ImageElement sprite;
     bool isCopy;
     //a set is like a list but each thing in it happens exactly one or zero times
     Set<Rule>  rules = new Set<Rule>();
@@ -18,6 +19,7 @@ class RuleSet {
     Iterable<Rule> get restrictiveRules => rules.where((Rule a) => (a is RestrictiveRule));
 
   RuleSet(String this.baseName, String this.imageLocation,Set<Rule> this.rules, {bool this.isCopy, bool this.baseItem=false}) {
+      sprite = new ImageElement(src: this.imageLocation);
       if(this.rules == null) {
           randomRules();
       }
