@@ -104,6 +104,10 @@ html, body {
 
 }
 
+.item:hover{
+    cursor: pointer;
+}
+
 .owl0{
     position: absolute;
     bottom: 0px;
