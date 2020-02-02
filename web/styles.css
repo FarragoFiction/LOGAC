@@ -66,6 +66,26 @@ html, body {
      }
 }
 
+@keyframes pulse {
+   0% { -moz-transform: scale(1);
+              -o-transform: scale(1);
+              -webkit-transform: scale(1);
+              transform: scale(1);
+        }
+
+    50% { -moz-transform: scale(1.10);
+                      -o-transform: scale(1.1);
+                      -webkit-transform: scale(1.1);
+                      transform: scale(1.1);
+     }
+
+      100% { -moz-transform: scaleX(1);
+                           -o-transform: scale(1);
+                           -webkit-transform: scale(1);
+                           transform: scale(1);
+          }
+}
+
 .game{
     width: 1280px;
     height: 642px;
@@ -80,6 +100,8 @@ html, body {
     max-height: 100px;
     bottom: 0px;
     left: 300px;
+    animation: pulse 2.0s steps(10) infinite;
+
 }
 
 .owl0{
