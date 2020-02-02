@@ -26,6 +26,16 @@ class RuleSet {
         if(baseItem) items[baseName] =this;
   }
 
+  //game will call this
+  void handleDragging() {
+      sprite.draggable = true;
+
+      sprite.onDragStart.listen((MouseEvent e) {
+        print("dragging is starting for $baseName");
+        e.dataTransfer.setData("text","$baseName");
+      });
+  }
+
   void randomRules() {
       rules = new Set<Rule>();
       List<Rule> possibleRules = new List<Rule>.from(Rule.rules);

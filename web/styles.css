@@ -101,7 +101,7 @@ html, body {
     bottom: 0px;
     left: 300px;
     animation: pulse 2.0s steps(10) infinite;
-
+    z-index: 999;
 }
 
 .item:hover{

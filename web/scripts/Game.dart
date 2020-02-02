@@ -13,6 +13,8 @@ class Game {
     int width =1280;
     int height = 642;
     Level currentLevel;
+    RuleSet firstItem;
+    RuleSet secondItem;
 
     Future<void> start(Element element) async {
         element.text = "";
@@ -39,13 +41,16 @@ class Game {
             item.sprite.classes.add("item");
             container.append(item.sprite);
             item.sprite.style.left = "${300+(i*65)}px";
+            item.handleDragging();
         }
     }
 
     void displayAlchemy() {
         print("alchemy");
         DivElement firstItemElement = new DivElement()..classes.add("firstItem");
+        firstItemDrop(firstItemElement);
         DivElement secondItemElement = new DivElement()..classes.add("secondItem");
+        secondItemDrop(secondItemElement);
         DivElement resultItemElement = new DivElement()..classes.add("resultItem");
         container.append(firstItemElement);
         container.append(secondItemElement);
@@ -59,6 +64,40 @@ class Game {
         container.append(xorButton);
 
 
+    }
+
+    void secondItemDrop(DivElement secondItemElement) {
+      secondItemElement.onDrop.listen((MouseEvent e) {
+          print("detected a drop for second item");
+          String text = e.dataTransfer.getData("text");
+          if(secondItem != null) {
+              secondItem.sprite.style.left = "${300+(currentLevel.items.indexOf(secondItem)*65)}px";
+              secondItem.sprite.style.bottom = "0px";
+          }
+          secondItem = RuleSet.items[text];
+          secondItem.sprite.style.right = "${270-(secondItem.sprite.width/2)}px";
+          secondItem.sprite.style.top = "${80+(secondItem.sprite.height/2)}px";
+      });
+      secondItemElement.onDragOver.listen((Event e) {
+          e.preventDefault();
+      });
+    }
+
+    void firstItemDrop(DivElement firstItemElement) {
+      firstItemElement.onDrop.listen((MouseEvent e) {
+          print("detected a drop for first item");
+          String text = e.dataTransfer.getData("text");
+          if(firstItem != null) {
+              firstItem.sprite.style.left = "${300+(currentLevel.items.indexOf(firstItem)*65)}px";
+              firstItem.sprite.style.bottom = "0px";
+          }
+          firstItem = RuleSet.items[text];
+          firstItem.sprite.style.left = "${270+(firstItem.sprite.width/2)}px";
+          firstItem.sprite.style.top = "${80+(firstItem.sprite.height/2)}px";
+      });
+      firstItemElement.onDragOver.listen((Event e) {
+          e.preventDefault();
+      });
     }
 
 
