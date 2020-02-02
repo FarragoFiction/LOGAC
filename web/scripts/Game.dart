@@ -37,11 +37,11 @@ class Game {
     void displayItems() {
         int i = 0;
         for(RuleSet item in currentLevel.items) {
-            i++;
             item.sprite.classes.add("item");
             container.append(item.sprite);
-            item.sprite.style.left = "${300+(i*65)}px";
+            item.sprite.style.left = "${365+(i*65)}px";
             item.handleDragging();
+            i++;
         }
     }
 
@@ -73,6 +73,7 @@ class Game {
           if(secondItem != null) {
               secondItem.sprite.style.left = "${300+(currentLevel.items.indexOf(secondItem)*65)}px";
               secondItem.sprite.style.bottom = "0px";
+              secondItem.sprite.style.top = null;
           }
           secondItem = RuleSet.items[text];
           secondItem.sprite.style.right = "${270-(secondItem.sprite.width/2)}px";
@@ -90,6 +91,8 @@ class Game {
           if(firstItem != null) {
               firstItem.sprite.style.left = "${300+(currentLevel.items.indexOf(firstItem)*65)}px";
               firstItem.sprite.style.bottom = "0px";
+              firstItem.sprite.style.top = null;
+
           }
           firstItem = RuleSet.items[text];
           firstItem.sprite.style.left = "${270+(firstItem.sprite.width/2)}px";
