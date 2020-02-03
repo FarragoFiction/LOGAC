@@ -79,8 +79,8 @@ class Game {
             resultItem = new AlchemyResultOR(<RuleSet>[firstItem,secondItem]).result;
             resultItem.baseName = currentLevel.name;
             resultItem.alchemyDisplay(resultItemElement);
-            currentLevel.suggestRuleset(resultItem);
             alchemyAttention();
+            judge(currentLevel.suggestRuleset(resultItem));
             //TODO decide how to animate teams, pop up describing reaction
         });
     }
@@ -98,8 +98,8 @@ class Game {
             resultItem = new AlchemyResultXOR(<RuleSet>[firstItem,secondItem]).result;
             resultItem.baseName = currentLevel.name;
             resultItem.alchemyDisplay(resultItemElement);
-            currentLevel.suggestRuleset(resultItem);
             alchemyAttention();
+            judge(currentLevel.suggestRuleset(resultItem));
             //TODO decide how to animate teams, pop up describing reaction
         });
 
@@ -112,11 +112,19 @@ class Game {
           resultItem = new AlchemyResultAND(<RuleSet>[firstItem,secondItem]).result;
           resultItem.baseName = currentLevel.name;
           resultItem.alchemyDisplay(resultItemElement);
-          currentLevel.suggestRuleset(resultItem);
           alchemyAttention();
+          judge(currentLevel.suggestRuleset(resultItem));
           //TODO decide how to animate teams, pop up describing reaction
       });
       container.append(andButton);
+    }
+
+    void judge(bool judgement) {
+        if(judgement) {
+            window.alert("!!!");
+        }else {
+            window.alert("NOPE!");
+        }
     }
 
     void secondItemDrop() {

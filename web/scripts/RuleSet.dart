@@ -27,6 +27,7 @@ class RuleSet {
   }
 
   void alchemyDisplay(Element parent) {
+      parent.text = "";
       for (final Rule rule in rules) {
           DivElement div = new DivElement();
           div.classes.add("alchemyRule");
