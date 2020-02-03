@@ -27,12 +27,27 @@ class RuleSet {
   }
 
   //game will call this
-  void handleDragging() {
+  void handleDragging(List<Element> elements) {
       sprite.draggable = true;
 
+      sprite.onMouseDown.listen((MouseEvent e) {
+          elements.forEach((Element e) =>e.classes.add("attention"));
+          e.dataTransfer.setData("text","$baseName");
+      });
+
+      sprite.onMouseUp.listen((MouseEvent e) {
+          elements.forEach((Element e) =>e.classes.remove("attention"));
+          e.dataTransfer.setData("text","$baseName");
+      });
+
       sprite.onDragStart.listen((MouseEvent e) {
-        print("dragging is starting for $baseName");
+        elements.forEach((Element e) =>e.classes.add("attention"));
         e.dataTransfer.setData("text","$baseName");
+      });
+
+      sprite.onDragEnd.listen((MouseEvent e) {
+          elements.forEach((Element e) =>e.classes.remove("attention"));
+          e.dataTransfer.setData("text","$baseName");
       });
   }
 

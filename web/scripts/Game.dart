@@ -10,6 +10,8 @@ import 'RuleSet.dart';
 
 class Game {
     Element container;
+    Element firstItemElement;
+    Element secondItemElement;
     int width =1280;
     int height = 642;
     Level currentLevel;
@@ -30,8 +32,8 @@ class Game {
         currentLevel.team2.displayRules(container,1);
         currentLevel.team1.displayTeam(container,0);
         currentLevel.team2.displayTeam(container,1);
-        displayItems();
         displayAlchemy();
+        displayItems();
     }
 
     void displayItems() {
@@ -40,17 +42,17 @@ class Game {
             item.sprite.classes.add("item");
             container.append(item.sprite);
             item.sprite.style.left = "${365+(i*65)}px";
-            item.handleDragging();
+            item.handleDragging(<Element>[firstItemElement, secondItemElement]);
             i++;
         }
     }
 
     void displayAlchemy() {
         print("alchemy");
-        DivElement firstItemElement = new DivElement()..classes.add("firstItem");
-        firstItemDrop(firstItemElement);
-        DivElement secondItemElement = new DivElement()..classes.add("secondItem");
-        secondItemDrop(secondItemElement);
+        firstItemElement = new DivElement()..classes.add("firstItem");
+        firstItemDrop();
+        secondItemElement = new DivElement()..classes.add("secondItem");
+        secondItemDrop();
         DivElement resultItemElement = new DivElement()..classes.add("resultItem");
         container.append(firstItemElement);
         container.append(secondItemElement);
@@ -66,12 +68,12 @@ class Game {
 
     }
 
-    void secondItemDrop(DivElement secondItemElement) {
+    void secondItemDrop() {
       secondItemElement.onDrop.listen((MouseEvent e) {
           print("detected a drop for second item");
           String text = e.dataTransfer.getData("text");
           if(secondItem != null) {
-              secondItem.sprite.style.left = "${300+(currentLevel.items.indexOf(secondItem)*65)}px";
+              secondItem.sprite.style.right = "${300+(currentLevel.items.indexOf(secondItem)*65)}px";
               secondItem.sprite.style.bottom = "0px";
               secondItem.sprite.style.top = null;
           }
@@ -84,7 +86,7 @@ class Game {
       });
     }
 
-    void firstItemDrop(DivElement firstItemElement) {
+    void firstItemDrop() {
       firstItemElement.onDrop.listen((MouseEvent e) {
           print("detected a drop for first item");
           String text = e.dataTransfer.getData("text");
