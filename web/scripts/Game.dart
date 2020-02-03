@@ -12,11 +12,15 @@ class Game {
     Element container;
     Element firstItemElement;
     Element secondItemElement;
+    Element andButton;
+    Element orButton;
+    Element xorButton;
     int width =1280;
     int height = 642;
     Level currentLevel;
     RuleSet firstItem;
     RuleSet secondItem;
+    RuleSet resultItem;
 
     Future<void> start(Element element) async {
         element.text = "";
@@ -58,9 +62,9 @@ class Game {
         container.append(secondItemElement);
         container.append(resultItemElement);
 
-        ButtonElement andButton = new ButtonElement()..text = "AND"..classes.add("andButton");;
-        ButtonElement orButton = new ButtonElement()..text = "OR"..classes.add("orButton");;
-        ButtonElement xorButton = new ButtonElement()..text = "XOR"..classes.add("xorButton");;
+        andButton = new ButtonElement()..text = "AND"..classes.add("andButton");;
+        orButton = new ButtonElement()..text = "OR"..classes.add("orButton");;
+        xorButton = new ButtonElement()..text = "XOR"..classes.add("xorButton");;
         container.append(andButton);
         container.append(orButton);
         container.append(xorButton);
@@ -79,11 +83,24 @@ class Game {
           secondItem = RuleSet.items[text];
           secondItem.sprite.style.display = "none";
           secondItem.alchemyDisplay(secondItemElement);
+          alchemyAttention();
 
       });
       secondItemElement.onDragOver.listen((Event e) {
           e.preventDefault();
       });
+    }
+
+    void alchemyAttention() {
+        if(firstItem != null && secondItem != null && resultItem == null) {
+            andButton.classes.add("attention");
+            orButton.classes.add("attention");
+            xorButton.classes.add("attention");
+        }else {
+            andButton.classes.remove("attention");
+            orButton.classes.remove("attention");
+            xorButton.classes.remove("attention");
+        }
     }
 
     void firstItemDrop() {
@@ -97,10 +114,12 @@ class Game {
           firstItem = RuleSet.items[text];
           firstItem.sprite.style.display = "none";
           firstItem.alchemyDisplay(firstItemElement);
+          alchemyAttention();
       });
       firstItemElement.onDragOver.listen((Event e) {
           e.preventDefault();
       });
+
     }
 
 
