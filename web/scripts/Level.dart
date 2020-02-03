@@ -31,6 +31,11 @@ class Level {
         team2.ruleSet.imageLocation = team1.ruleSet.imageLocation;
     }
 
+    void clearResult() {
+        team1.clearResult();
+        team2.clearResult();
+    }
+
     bool suggestRuleset(RuleSet suggestion) {
         currentSuggestion = suggestion;
         currentSuggestion.baseName = team1.ruleSet.baseName;

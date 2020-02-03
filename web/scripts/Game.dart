@@ -4,6 +4,7 @@ import 'package:CommonLib/Colours.dart';
 import 'package:LoaderLib/Loader.dart';
 import 'package:RenderingLib/RendereringLib.dart';
 
+import 'AlchemyResult.dart';
 import 'Level.dart';
 import 'RuleSet.dart';
 
@@ -12,6 +13,8 @@ class Game {
     Element container;
     Element firstItemElement;
     Element secondItemElement;
+    Element resultItemElement;
+
     Element andButton;
     Element orButton;
     Element xorButton;
@@ -57,19 +60,63 @@ class Game {
         firstItemDrop();
         secondItemElement = new DivElement()..classes.add("secondItem");
         secondItemDrop();
-        DivElement resultItemElement = new DivElement()..classes.add("resultItem");
+        resultItemElement = new DivElement()..classes.add("resultItem");
         container.append(firstItemElement);
         container.append(secondItemElement);
         container.append(resultItemElement);
 
-        andButton = new ButtonElement()..text = "AND"..classes.add("andButton");;
-        orButton = new ButtonElement()..text = "OR"..classes.add("orButton");;
-        xorButton = new ButtonElement()..text = "XOR"..classes.add("xorButton");;
-        container.append(andButton);
+        displayAnd();
+        displayOr();
+        displayXor();
+
+
+    }
+
+    void displayOr() {
+        orButton = new ButtonElement()..text = "OR"..classes.add("orButton");
         container.append(orButton);
+        orButton.onClick.listen((Event e) {
+            resultItem = new AlchemyResultOR(<RuleSet>[firstItem,secondItem]).result;
+            resultItem.baseName = currentLevel.name;
+            resultItem.alchemyDisplay(resultItemElement);
+            currentLevel.suggestRuleset(resultItem);
+            alchemyAttention();
+            //TODO decide how to animate teams, pop up describing reaction
+        });
+    }
+
+    void clearResult() {
+        resultItem = null;
+        resultItemElement.text = "";
+        currentLevel.clearResult();
+    }
+
+    void displayXor() {
+        xorButton = new ButtonElement()..text = "XOR"..classes.add("xorButton");
         container.append(xorButton);
+        xorButton.onClick.listen((Event e) {
+            resultItem = new AlchemyResultXOR(<RuleSet>[firstItem,secondItem]).result;
+            resultItem.baseName = currentLevel.name;
+            resultItem.alchemyDisplay(resultItemElement);
+            currentLevel.suggestRuleset(resultItem);
+            alchemyAttention();
+            //TODO decide how to animate teams, pop up describing reaction
+        });
 
 
+    }
+
+    void displayAnd() {
+      andButton = new ButtonElement()..text = "AND"..classes.add("andButton");
+      andButton.onClick.listen((Event e) {
+          resultItem = new AlchemyResultAND(<RuleSet>[firstItem,secondItem]).result;
+          resultItem.baseName = currentLevel.name;
+          resultItem.alchemyDisplay(resultItemElement);
+          currentLevel.suggestRuleset(resultItem);
+          alchemyAttention();
+          //TODO decide how to animate teams, pop up describing reaction
+      });
+      container.append(andButton);
     }
 
     void secondItemDrop() {
@@ -83,8 +130,8 @@ class Game {
           secondItem = RuleSet.items[text];
           secondItem.sprite.style.display = "none";
           secondItem.alchemyDisplay(secondItemElement);
+          clearResult();
           alchemyAttention();
-
       });
       secondItemElement.onDragOver.listen((Event e) {
           e.preventDefault();
@@ -114,6 +161,7 @@ class Game {
           firstItem = RuleSet.items[text];
           firstItem.sprite.style.display = "none";
           firstItem.alchemyDisplay(firstItemElement);
+          clearResult();
           alchemyAttention();
       });
       firstItemElement.onDragOver.listen((Event e) {

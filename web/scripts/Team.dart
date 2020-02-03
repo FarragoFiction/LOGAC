@@ -68,6 +68,10 @@ class Team {
         }
     }
 
+    void clearResult() {
+        owls.forEach((Owl owl) => owl.idleTime());
+    }
+
     void setupPaletteFrames() {
         flap = new CanvasElement(width: flapSource.width, height: flapSource.height);
         flap.context2D.drawImage(flapSource,0,0);

@@ -33,7 +33,7 @@ do not fight, false
 do not water the object, false
 do not bounce the object, false
 do not steal the object, false
-do not move while you have the object, false
+don't move while holding objects, false
 do not leave the field, false
 do not give the object to others, false
 do not damage the object, false
@@ -49,11 +49,11 @@ get the object to a specific side, true
 not let the object touch you, false
 do not let the object escape, false
 destroy all of your opponents objects, true
-keep opponents object out of a hole, false
-keep opponents object to a specific side, false
+keep enemy objects out of holes, false
+keep enemy objects to a specific side, false
 touch enemies with the object, true
 let enemy objects escape, true
-do not let your objects be destroyed, false
+don't let objects be destroyed, false
 be polite, true
 your object can spawn offspring, true
 what object?, true
