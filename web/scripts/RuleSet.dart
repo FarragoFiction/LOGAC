@@ -26,18 +26,26 @@ class RuleSet {
         if(baseItem) items[baseName] =this;
   }
 
+  void alchemyDisplay(Element parent) {
+      for (final Rule rule in rules) {
+          DivElement div = new DivElement();
+          div.classes.add("alchemyRule");
+          SpanElement plzwork = new SpanElement()..text = "${rule.applyObjectToPhrase(baseName)}";
+          div.append(plzwork);
+          parent.append(div);
+      }
+  }
+
   //game will call this
   void handleDragging(List<Element> elements) {
       sprite.draggable = true;
 
       sprite.onMouseDown.listen((MouseEvent e) {
           elements.forEach((Element e) =>e.classes.add("attention"));
-          e.dataTransfer.setData("text","$baseName");
       });
 
       sprite.onMouseUp.listen((MouseEvent e) {
           elements.forEach((Element e) =>e.classes.remove("attention"));
-          e.dataTransfer.setData("text","$baseName");
       });
 
       sprite.onDragStart.listen((MouseEvent e) {

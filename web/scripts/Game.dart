@@ -73,13 +73,13 @@ class Game {
           print("detected a drop for second item");
           String text = e.dataTransfer.getData("text");
           if(secondItem != null) {
-              secondItem.sprite.style.right = "${300+(currentLevel.items.indexOf(secondItem)*65)}px";
-              secondItem.sprite.style.bottom = "0px";
-              secondItem.sprite.style.top = null;
+              secondItem.sprite.style.display = "block";
+              secondItemElement.text ="";
           }
           secondItem = RuleSet.items[text];
-          secondItem.sprite.style.right = "${270-(secondItem.sprite.width/2)}px";
-          secondItem.sprite.style.top = "${80+(secondItem.sprite.height/2)}px";
+          secondItem.sprite.style.display = "none";
+          secondItem.alchemyDisplay(secondItemElement);
+
       });
       secondItemElement.onDragOver.listen((Event e) {
           e.preventDefault();
@@ -91,14 +91,12 @@ class Game {
           print("detected a drop for first item");
           String text = e.dataTransfer.getData("text");
           if(firstItem != null) {
-              firstItem.sprite.style.left = "${300+(currentLevel.items.indexOf(firstItem)*65)}px";
-              firstItem.sprite.style.bottom = "0px";
-              firstItem.sprite.style.top = null;
-
+              firstItem.sprite.style.display= "block";
+              firstItemElement.text ="";
           }
           firstItem = RuleSet.items[text];
-          firstItem.sprite.style.left = "${270+(firstItem.sprite.width/2)}px";
-          firstItem.sprite.style.top = "${80+(firstItem.sprite.height/2)}px";
+          firstItem.sprite.style.display = "none";
+          firstItem.alchemyDisplay(firstItemElement);
       });
       firstItemElement.onDragOver.listen((Event e) {
           e.preventDefault();
