@@ -29,6 +29,9 @@ class Game {
 
     Future<void> start(Element element) async {
         element.text = "";
+        if(beatenLevels.length == Level.levels.length) {
+            window.alert("You did it!!!");
+        }
         parent = element;
         container = new DivElement()..classes.add("game");
         element.append(container);
