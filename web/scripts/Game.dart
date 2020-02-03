@@ -16,7 +16,7 @@ class Game {
     Element orButton;
     Element xorButton;
     int width =1280;
-    int height = 642;
+    int height = 800;
     Level currentLevel;
     RuleSet firstItem;
     RuleSet secondItem;
