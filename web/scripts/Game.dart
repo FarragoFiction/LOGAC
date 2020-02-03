@@ -11,6 +11,7 @@ import 'RuleSet.dart';
 
 class Game {
     Element container;
+    Element parent;
     Element firstItemElement;
     Element secondItemElement;
     Element resultItemElement;
@@ -21,12 +22,14 @@ class Game {
     int width =1280;
     int height = 800;
     Level currentLevel;
+    List<Level> beatenLevels = new List<Level>();
     RuleSet firstItem;
     RuleSet secondItem;
     RuleSet resultItem;
 
     Future<void> start(Element element) async {
         element.text = "";
+        parent = element;
         container = new DivElement()..classes.add("game");
         element.append(container);
         await levelSelect();
@@ -122,6 +125,8 @@ class Game {
     void judge(bool judgement) {
         if(judgement) {
             window.alert("!!!");
+            beatenLevels.add(currentLevel);
+            start(parent);
         }else {
             window.alert("NOPE!");
         }
@@ -188,6 +193,13 @@ class Game {
         ImageElement levelSelect =  await Loader.getResource("images/levelSelect.png");
         canvas.context2D.drawImage(levelSelect,0,0);
         container.append(canvas);
+
+        for(final Level level in beatenLevels) {
+            final Colour color = new Colour.fromStyleString("#ffd800");
+            final Palette mapColor = new Palette()..add("selected", level.color);
+            final Palette selected = new Palette()..add("selected", color);
+            Renderer.swapPalette(canvas, mapColor, selected);
+        }
 
         canvas.onClick.listen((MouseEvent e) {
           final Rectangle rect = canvas.getBoundingClientRect();

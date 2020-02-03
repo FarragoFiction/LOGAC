@@ -31,8 +31,8 @@ class RuleSet {
       for (final Rule rule in rules) {
           DivElement div = new DivElement();
           div.classes.add("alchemyRule");
-          SpanElement plzwork = new SpanElement()..text = "${rule.applyObjectToPhrase(baseName)}";
-          div.append(plzwork);
+          rule.element= new SpanElement()..text = "${rule.applyObjectToPhrase(baseName)}";
+          div.append(rule.element);
           parent.append(div);
       }
   }

@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:CommonLib/Colours.dart';
 import 'package:CommonLib/Random.dart';
 import 'package:http/http.dart' as http;
@@ -7,6 +9,7 @@ abstract class Rule {
     static List<Rule> rules = new List<Rule>();
     //i.e. "you may eat the object"
     String _phrase;
+    Element element;
     Colour bgColor;
     Colour foregroundColor;
 
