@@ -32,6 +32,27 @@ class Game {
 
     Future<void> start(Element element) async {
         element.text = "";
+        parent = element;
+        container = new DivElement()..classes.add("game");
+        element.append(container);
+        DivElement intro = new DivElement()..classes.add("intro");
+        container.append(intro);
+        ImageElement wright = new ImageElement(src: "images/wrightoflaw.png")..classes.add('avatar');
+        intro.append(wright);
+        DivElement text = new DivElement()..setInnerHtml("The Wright of Law begins to actually engage with the Land of Games and Confusion, after a frankly mind boggling amount of time bugging and fussing and meddling with her coplayers. Her Quest is to use the Alchemy methods of And, Or and the ever-so-mysterious Xor on the proffered rules of of the competitions of the 8 Districts, in order to finally bring order to the chaos of the rules laid down by the Denizen Gerrymander.<br><br>While two teams of Owls watch with frankly unsettling focus, The Wright of Law must place items into the Alchemy Slots of the Adventure Bus in order to create new Rules which satisfy both teams.")..classes.add("introtext");
+        intro.append(text);
+        DivElement loading = new DivElement()..text = "LOADING..."..classes.add("loading")..classes.add("loadingbase");
+        text.append(loading);
+        await reset();
+        loading.text = "Click to Begin";
+        loading.classes.remove("loading");
+        intro.onClick.listen((Event e) {
+            startLevel(element);
+        });
+    }
+
+    Future<void> startLevel(Element element) async {
+        element.text = "";
         if(beatenLevels.length == Level.levels.length) {
             window.alert("You did it!!!");
         }
@@ -148,7 +169,7 @@ class Game {
         if(judgement) {
             window.alert("!!!");
             beatenLevels.add(currentLevel);
-            start(parent);
+            startLevel(parent);
         }else {
             window.alert("NOPE!");
         }

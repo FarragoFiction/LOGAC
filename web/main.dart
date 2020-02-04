@@ -97,7 +97,6 @@ void gameTest() async {
 
 void realGame() async {
   lastChoice = realGame;
-  await Game.reset();
   Game game = new Game();
   game.start(querySelector("#output"));
 }

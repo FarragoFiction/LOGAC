@@ -266,6 +266,41 @@ position: absolute;
     flex-wrap: wrap;
 }
 
+.intro{
+    width: 1280px;
+    height: 800px;
+}
+
+.loading{
+    animation: pulse 2.0s steps(10) infinite;
+}
+
+.loadingbase{
+    text-align: center;
+    padding: 30px;
+}
+
+.introtext{
+    background: #44244d;
+    position: absolute;
+    top: 100px;
+    color: #cc87e8;
+    font-size: 28px;
+    width: 800px;
+    border-radius: 8px;
+    right: 180px;
+    padding: 20px;
+    display: inline-block;
+    box-shadow: -10px 10px 20px #000000;
+}
+
+.avatar{
+    display: inline-block;
+    position: absolute;
+    bottom: 10px;
+    height: 450px;
+}
+
 button{
     border-radius: 8px;
     font-weight: 900;
