@@ -6,10 +6,13 @@ import 'package:RenderingLib/RendereringLib.dart';
 
 import 'AlchemyResult.dart';
 import 'Level.dart';
+import 'Rule.dart';
 import 'RuleSet.dart';
+import 'Team.dart';
 
 
 class Game {
+    static int levelAlg = 5;
     Element container;
     Element parent;
     Element firstItemElement;
@@ -38,6 +41,13 @@ class Game {
         await levelSelect();
     }
 
+    static Future<void> reset() async {
+        await Team.loadFrames();
+        await Rule.slurpRules();
+        await RuleSet.slurpItems();
+        await Level.initLevels(levelAlg);
+    }
+
     void displayCurrentLevel() {
         container.text = "";
 
@@ -45,8 +55,17 @@ class Game {
         currentLevel.team2.displayRules(container,1);
         currentLevel.team1.displayTeam(container,0);
         currentLevel.team2.displayTeam(container,1);
+        displayBack();
         displayAlchemy();
         displayItems();
+    }
+
+    void displayBack() {
+        final AnchorElement back = new AnchorElement()..text = "<"..classes.add('back');
+        container.append(back);
+        back.onClick.listen((Event e) {
+            levelSelect();
+        });
     }
 
     void displayItems() {

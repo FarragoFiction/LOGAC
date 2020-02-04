@@ -8,15 +8,14 @@ import 'scripts/Rule.dart';
 import 'scripts/Team.dart';
 import 'scripts/Tester.dart';
 
-int levelAlg = 5;
 dynamic lastChoice;
 
 void main() async {
   if(Uri.base.queryParameters['levelAlg'] !=null) {
-    levelAlg = int.parse(Uri.base.queryParameters['levelAlg']);
+    Game.levelAlg = int.parse(Uri.base.queryParameters['levelAlg']);
   }
 
-  wireUpTestControls();
+  //wireUpTestControls();
   realGame();
 
 }
@@ -43,29 +42,24 @@ void wireUpTestControls() {
 
 }
 
-void reset() async {
-  await Team.loadFrames();
-  await Rule.slurpRules();
-  await RuleSet.slurpItems();
-  await Level.initLevels(levelAlg);
-}
+
 
 
 void buildItems() async{
   lastChoice = buildItems;
-  await reset();
+  await Game.reset();
   ItemBuilder.go(querySelector("#output"));
 }
 
 void owlTest() async{
   lastChoice = owlTest;
-  await reset();
+  await Game.reset();
   Level.debugAllInDomOwl(querySelector("#output"));
 }
 
 void levelTest() async{
   lastChoice = levelTest;
-  await reset();
+  await Game.reset();
   Level.debugAllInDom(querySelector("#output"));
 
 
@@ -77,13 +71,13 @@ void setLevelGenAlg() {
   algSelector.append(select);
   querySelector("#controls").append(algSelector);
   for(int i = 0; i<6; i++) {
-    OptionElement option = new OptionElement(value: i.toString(), selected: i==levelAlg)..text =i.toString();
+    OptionElement option = new OptionElement(value: i.toString(), selected: i==Game.levelAlg)..text =i.toString();
     select.append(option);
   }
-  select.onChange.listen((Event e) {
+  select.onChange.listen((Event e) async{
     //reset the levels based on the new alg, rerender your last choice
-    levelAlg = int.parse(select.selectedOptions.first.value);
-    reset();
+    Game.levelAlg = int.parse(select.selectedOptions.first.value);
+    await Game.reset();
     lastChoice();
   });
 }
@@ -91,19 +85,19 @@ void setLevelGenAlg() {
 
 void debugAll() async{
   lastChoice = debugAll;
-  await reset();
+  await Game.reset();
   RuleSet.debugAllInDom(querySelector("#output"));
 }
 
 void gameTest() async {
   lastChoice = gameTest;
-  await reset();
+  await Game.reset();
   Tester.testDropDown(querySelector("#output"));
 }
 
 void realGame() async {
   lastChoice = realGame;
-  await reset();
+  await Game.reset();
   Game game = new Game();
   game.start(querySelector("#output"));
 }
