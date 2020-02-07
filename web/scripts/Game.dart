@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html';
 
 import 'package:CommonLib/Colours.dart';
@@ -167,12 +168,22 @@ class Game {
 
     void judge(bool judgement) {
         if(judgement) {
-            window.alert("!!!");
+           popup("Congratulations, Wright! Both teams love the new rules!!!!!!!!");
             beatenLevels.add(currentLevel);
             startLevel(parent);
         }else {
-            window.alert("NOPE!");
+            popup("Absolutely not, these rules are complete bullshit!!!!!!!! You need to convince BOTH teams to accept at least half the rules.");
         }
+    }
+
+    void popup(String text) {
+        final DivElement div = new DivElement()..text = text..classes.add("popup");
+        container.append(div);
+        StreamSubscription listener;
+        listener= div.onClick.listen((Event e) {
+            div.remove();
+            listener.cancel();
+        });
     }
 
     void secondItemDrop() {
