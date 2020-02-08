@@ -12,6 +12,8 @@ html, body {
   color: white;
 }
 
+
+
 #output {
   padding: 20px;
 }
@@ -196,6 +198,8 @@ position: absolute;
     color: #cc87e8;
 }
 
+
+
 .rule{
     width: 160px;
     padding: 5px;
@@ -357,4 +361,10 @@ button:hover{
 
 button:active{
     transform: translateY(5px);
+}
+
+.win{
+    position: absolute;
+    left: 0px;
+    right: 0px;
 }

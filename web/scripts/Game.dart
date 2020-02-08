@@ -4,7 +4,7 @@ import 'dart:html';
 import 'package:CommonLib/Colours.dart';
 import 'package:LoaderLib/Loader.dart';
 import 'package:RenderingLib/RendereringLib.dart';
-
+import 'package:http/http.dart' as http;
 import 'AlchemyResult.dart';
 import 'Level.dart';
 import 'Rule.dart';
@@ -54,13 +54,31 @@ class Game {
 
     Future<void> startLevel(Element element) async {
         element.text = "";
-        if(beatenLevels.length == Level.levels.length) {
-            window.alert("You did it!!!");
+        if(beatenLevels.isEmpty) {
+            window.alert("JR SAYS REMOVE THESES");
+            beatenLevels = new List.from(Level.levels);
         }
-        parent = element;
-        container = new DivElement()..classes.add("game");
-        element.append(container);
-        await levelSelect();
+        if(beatenLevels.length == Level.levels.length) {
+            displayWinGraphic();
+        }else {
+            parent = element;
+            container = new DivElement()
+                ..classes.add("game");
+            element.append(container);
+            await levelSelect();
+        }
+    }
+
+    void displayWinGraphic() {
+        final ImageElement win = new ImageElement(src: "images/awinnerisyou.png")..classes.add('win')..classes.add("game");
+        parent.append(win);
+        gigglesnort();
+    }
+
+    void gigglesnort() async {
+        print("Nothing to see here:");
+        http.Response data = await http.get("Data/chat_daydreamnumbernineteen.paldemic");
+        print(data.body);
     }
 
     static Future<void> reset() async {
