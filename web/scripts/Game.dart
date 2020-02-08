@@ -19,6 +19,7 @@ class Game {
     Element firstItemElement;
     Element secondItemElement;
     Element resultItemElement;
+    static AudioElement soundEffects = new AudioElement();
 
     Element andButton;
     Element orButton;
@@ -45,6 +46,7 @@ class Game {
         DivElement loading = new DivElement()..text = "LOADING..."..classes.add("loading")..classes.add("loadingbase");
         text.append(loading);
         await reset();
+        playSoundEffect("gavel");
         loading.text = "Click to Begin";
         loading.classes.remove("loading");
         intro.onClick.listen((Event e) {
@@ -54,10 +56,6 @@ class Game {
 
     Future<void> startLevel(Element element) async {
         element.text = "";
-        if(beatenLevels.isEmpty) {
-            window.alert("JR SAYS REMOVE THESES");
-            beatenLevels = new List.from(Level.levels);
-        }
         if(beatenLevels.length == Level.levels.length) {
             displayWinGraphic();
         }else {
@@ -297,6 +295,14 @@ class Game {
           }
 
         });
+    }
+
+    //http://soundbible.com/1679-Gavel-Banging.html
+    static void playSoundEffect(String locationWithoutExtension) {
+        if(soundEffects.canPlayType("audio/mpeg").isNotEmpty) soundEffects.src = "SoundFX/${locationWithoutExtension}.mp3";
+        if(soundEffects.canPlayType("audio/ogg").isNotEmpty) soundEffects.src = "SoundFX/${locationWithoutExtension}.ogg";
+        soundEffects.play();
+
     }
 
 
