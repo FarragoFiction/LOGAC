@@ -50,6 +50,7 @@ class Game {
         loading.text = "Click to Begin";
         loading.classes.remove("loading");
         intro.onClick.listen((Event e) {
+            playSoundEffect("254286__jagadamba__mechanical-switch");
             startLevel(element);
         });
     }
@@ -102,6 +103,7 @@ class Game {
         final AnchorElement back = new AnchorElement()..text = "<"..classes.add('back');
         container.append(back);
         back.onClick.listen((Event e) {
+            playSoundEffect("254286__jagadamba__mechanical-switch");
             levelSelect();
         });
     }
@@ -139,6 +141,7 @@ class Game {
         orButton = new ButtonElement()..text = "OR"..classes.add("orButton");
         container.append(orButton);
         orButton.onClick.listen((Event e) {
+            playSoundEffect("254286__jagadamba__mechanical-switch");
             resultItem = new AlchemyResultOR(<RuleSet>[firstItem,secondItem]).result;
             resultItem.baseName = currentLevel.name;
             resultItem.alchemyDisplay(resultItemElement);
@@ -158,6 +161,7 @@ class Game {
         xorButton = new ButtonElement()..text = "XOR"..classes.add("xorButton");
         container.append(xorButton);
         xorButton.onClick.listen((Event e) {
+            playSoundEffect("254286__jagadamba__mechanical-switch");
             resultItem = new AlchemyResultXOR(<RuleSet>[firstItem,secondItem]).result;
             resultItem.baseName = currentLevel.name;
             resultItem.alchemyDisplay(resultItemElement);
@@ -172,6 +176,7 @@ class Game {
     void displayAnd() {
       andButton = new ButtonElement()..text = "AND"..classes.add("andButton");
       andButton.onClick.listen((Event e) {
+          playSoundEffect("254286__jagadamba__mechanical-switch");
           resultItem = new AlchemyResultAND(<RuleSet>[firstItem,secondItem]).result;
           resultItem.baseName = currentLevel.name;
           resultItem.alchemyDisplay(resultItemElement);
@@ -197,6 +202,7 @@ class Game {
         container.append(div);
         StreamSubscription listener;
         listener= div.onClick.listen((Event e) {
+            playSoundEffect("254286__jagadamba__mechanical-switch");
             div.remove();
             listener.cancel();
         });
@@ -272,7 +278,8 @@ class Game {
         }
 
         canvas.onClick.listen((MouseEvent e) {
-          final Rectangle rect = canvas.getBoundingClientRect();
+            playSoundEffect("254286__jagadamba__mechanical-switch");
+            final Rectangle rect = canvas.getBoundingClientRect();
           final Point point = new Point(e.client.x-rect.left, e.client.y-rect.top);
           final double x = point.x;
           final double y = point.y;
@@ -298,10 +305,13 @@ class Game {
     }
 
     //http://soundbible.com/1679-Gavel-Banging.html
-    static void playSoundEffect(String locationWithoutExtension) {
+    //http://freesoundeffect.net/sound/glass-bottle-scraping-across-slate-board-1-sound-effect
+    static void playSoundEffect(String locationWithoutExtension, [loop = false]) {
         if(soundEffects.canPlayType("audio/mpeg").isNotEmpty) soundEffects.src = "SoundFX/${locationWithoutExtension}.mp3";
         if(soundEffects.canPlayType("audio/ogg").isNotEmpty) soundEffects.src = "SoundFX/${locationWithoutExtension}.ogg";
+        soundEffects.loop = loop;
         soundEffects.play();
+
 
     }
 

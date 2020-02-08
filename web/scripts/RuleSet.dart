@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:html';
 import 'package:CommonLib/Random.dart';
 import 'package:http/http.dart' as http;
+import 'Game.dart';
 import 'ItemBuilder.dart';
 import 'Rule.dart';
 
@@ -42,6 +43,7 @@ class RuleSet {
       sprite.draggable = true;
 
       sprite.onMouseDown.listen((MouseEvent e) {
+          Game.playSoundEffect("254286__jagadamba__mechanical-switch");
           elements.forEach((Element e) =>e.classes.add("attention"));
       });
 
@@ -52,10 +54,12 @@ class RuleSet {
       sprite.onDragStart.listen((MouseEvent e) {
         elements.forEach((Element e) =>e.classes.add("attention"));
         e.dataTransfer.setData("text","$baseName");
+        Game.playSoundEffect("scrape",true);
       });
 
       sprite.onDragEnd.listen((MouseEvent e) {
           elements.forEach((Element e) =>e.classes.remove("attention"));
+          Game.playSoundEffect("254286__jagadamba__mechanical-switch");
           e.dataTransfer.setData("text","$baseName");
       });
   }
