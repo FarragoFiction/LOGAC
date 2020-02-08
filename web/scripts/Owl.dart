@@ -42,7 +42,7 @@ class Owl {
             } else {
                 sprite.classes.add("happy-owl");
             }
-            playSoundEffect("cheer");
+            playSoundEffect("cheers");
         });
     }
 
