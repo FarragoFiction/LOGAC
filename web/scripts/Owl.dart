@@ -4,6 +4,7 @@ class Owl {
     //owls have an element and know how to animate themselves (palette gives the paletted sprite sheet to the element)
     Element sprite = new DivElement()..classes.add("owl");
     CanvasElement flap;
+    static AudioElement soundEffects = new AudioElement();
     CanvasElement idle;
     int x=0;
     int y = 0;
@@ -18,6 +19,7 @@ class Owl {
         }else {
             sprite.classes.add("angryowl");
         }
+        playSoundEffect("who");
     }
 
     void celebrateTime() {
@@ -26,6 +28,7 @@ class Owl {
         }else {
             sprite.classes.add("happy-owl");
         }
+        playSoundEffect("cheer");
     }
 
     void idleTime() {
@@ -41,6 +44,13 @@ class Owl {
     }
 
 
+    static void playSoundEffect(String locationWithoutExtension, [loop = false]) {
+        if(soundEffects.canPlayType("audio/mpeg").isNotEmpty) soundEffects.src = "SoundFX/${locationWithoutExtension}.mp3";
+        if(soundEffects.canPlayType("audio/ogg").isNotEmpty) soundEffects.src = "SoundFX/${locationWithoutExtension}.ogg";
+        soundEffects.loop = loop;
+        soundEffects.play();
 
+
+    }
 
 }

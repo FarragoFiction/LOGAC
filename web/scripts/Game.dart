@@ -20,6 +20,7 @@ class Game {
     Element secondItemElement;
     Element resultItemElement;
     static AudioElement soundEffects = new AudioElement();
+    static AudioElement music = new AudioElement();
 
     Element andButton;
     Element orButton;
@@ -50,6 +51,7 @@ class Game {
         loading.text = "Click to Begin";
         loading.classes.remove("loading");
         intro.onClick.listen((Event e) {
+            playMusic("weirdambient");
             playSoundEffect("254286__jagadamba__mechanical-switch");
             startLevel(element);
         });
@@ -311,6 +313,15 @@ class Game {
         if(soundEffects.canPlayType("audio/ogg").isNotEmpty) soundEffects.src = "SoundFX/${locationWithoutExtension}.ogg";
         soundEffects.loop = loop;
         soundEffects.play();
+
+
+    }
+
+    static void playMusic(String locationWithoutExtension, [loop = true]) {
+        if(music.canPlayType("audio/mpeg").isNotEmpty) music.src = "SoundFX/${locationWithoutExtension}.mp3";
+        if(music.canPlayType("audio/ogg").isNotEmpty) music.src = "SoundFX/${locationWithoutExtension}.ogg";
+        music.loop = loop;
+        music.play();
 
 
     }
