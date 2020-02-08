@@ -203,7 +203,7 @@ class Game {
         final DivElement div = new DivElement()..text = text..classes.add("popup");
         container.append(div);
         StreamSubscription listener;
-        listener= div.onClick.listen((Event e) {
+        listener= container.onMouseDown.listen((Event e) {
             playSoundEffect("254286__jagadamba__mechanical-switch");
             div.remove();
             listener.cancel();
