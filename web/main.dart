@@ -16,7 +16,19 @@ void main() async {
   }
 
   //wireUpTestControls();
-  realGame();
+  if(Uri.base.queryParameters['mode'] == "itemBuilder") {
+    buildItems();
+  }else if(Uri.base.queryParameters['mode'] == "debugAll") {
+    debugAll();
+  }else if(Uri.base.queryParameters['mode'] == "gameTest") {
+    gameTest();
+  }else if(Uri.base.queryParameters['mode'] == "owlTest") {
+    owlTest();
+  }else if(Uri.base.queryParameters['mode'] == "levelTest") {
+    levelTest();
+  }else {
+    realGame();
+  }
 
 }
 

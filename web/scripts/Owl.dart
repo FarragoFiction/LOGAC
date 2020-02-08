@@ -1,4 +1,7 @@
+import 'dart:async';
 import 'dart:html';
+
+import 'package:CommonLib/Random.dart';
 
 class Owl {
     //owls have an element and know how to animate themselves (palette gives the paletted sprite sheet to the element)
@@ -10,9 +13,15 @@ class Owl {
     int y = 0;
     Owl(CanvasElement this.flap, CanvasElement this.idle, this.x, this.y) {
         idleTime();
+        sprite.onClick.listen((Event e) {
+            playSoundEffect("who");
+        });
     }
 
-    void flapTime() {
+    void flapTime() async {
+        int duration = new Random().nextInt(1000);
+        new Timer(new Duration(milliseconds: duration), (){
+
         sprite.style.backgroundImage="url(${flap.toDataUrl()})";
         if(sprite.classes.contains("angryowl")) {
             sprite.classes.remove("angryowl");
@@ -20,15 +29,21 @@ class Owl {
             sprite.classes.add("angryowl");
         }
         playSoundEffect("who");
+        });
+
     }
 
-    void celebrateTime() {
-        if(sprite.classes.contains("happy-owl")) {
-            sprite.classes.remove("happy-owl");
-        }else {
-            sprite.classes.add("happy-owl");
-        }
-        playSoundEffect("cheer");
+    void celebrateTime() async {
+        int duration = new Random().nextInt(1000);
+        new Timer(new Duration(milliseconds: duration), ()
+        {
+            if (sprite.classes.contains("happy-owl")) {
+                sprite.classes.remove("happy-owl");
+            } else {
+                sprite.classes.add("happy-owl");
+            }
+            playSoundEffect("cheer");
+        });
     }
 
     void idleTime() {
