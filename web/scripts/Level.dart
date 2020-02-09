@@ -49,7 +49,7 @@ class Level {
         print("initializing levels");
         levels.clear();
         final List<String> levelNames = <String>["Basketball","Baseball","Soccer","Skateboard","Tennis","Pool","Poker Hand", "Horse"];
-        final List<String> colors = <String>["#ff828a","#383ef6","#81f1ff","#ab81ff","#e9fcff","#81ffb3","#fec182", "#ffe18f"];
+        final List<String> colors = <String>["#61c1b3","#5571ff","#743b89","#ab81ff","#5571ff","#cdbb68","#fec182", "#ffe18f"];
 
         int i = 0;
         for(String name in levelNames) {

@@ -333,6 +333,14 @@ button{
     border: 3px solid #d1a900;
 }
 
+.map{
+    position: absolute;
+}
+.overlay{
+    position: absolute;
+    z-index: 8;
+}
+
 .andButton{
     position: absolute;
     top: 355px;

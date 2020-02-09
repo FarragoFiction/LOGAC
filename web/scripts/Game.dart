@@ -269,10 +269,13 @@ class Game {
     Future<void> levelSelect() async {
         currentLevel = null;
         container.text = "";
-        CanvasElement canvas = new CanvasElement(width: width, height: height);
-        ImageElement levelSelect =  await Loader.getResource("images/levelSelect.png");
+        CanvasElement canvas = new CanvasElement(width: width, height: height)..classes.add("map");
+        ImageElement levelSelect =  await Loader.getResource("images/map.png");
+        ImageElement overlay = new ImageElement(src: "images/overlay.png")..classes.add("overlay");
         canvas.context2D.drawImage(levelSelect,0,0);
         container.append(canvas);
+        container.append(overlay);
+        beatenLevels.add(Level.levels.first);
 
         for(final Level level in beatenLevels) {
             final Colour color = new Colour.fromStyleString("#ffd800");
@@ -281,7 +284,8 @@ class Game {
             Renderer.swapPalette(canvas, mapColor, selected);
         }
 
-        canvas.onClick.listen((MouseEvent e) {
+
+        overlay.onClick.listen((MouseEvent e) {
             playSoundEffect("254286__jagadamba__mechanical-switch");
             final Rectangle rect = canvas.getBoundingClientRect();
           final Point point = new Point(e.client.x-rect.left, e.client.y-rect.top);
