@@ -57,6 +57,18 @@ class Game {
         });
     }
 
+    void hackGround(Colour color) async {
+        CanvasElement canvas = new CanvasElement(height: height, width: width);
+        ImageElement image =  await Loader.getResource("images/background.png");
+        canvas.context2D.drawImage(image,0,0);
+        Colour oldColor = new Colour.fromStyleString("#ff95f8");
+        Palette groundColor = new Palette()..add("map", oldColor);
+        Palette levelColor = new Palette()..add("map", color);
+        Renderer.swapPalette(canvas, groundColor, levelColor);
+        container.style.backgroundImage="url(${canvas.toDataUrl()})";
+
+    }
+
     Future<void> startLevel(Element element) async {
         element.text = "";
         if(beatenLevels.length == Level.levels.length) {
@@ -91,7 +103,7 @@ class Game {
 
     void displayCurrentLevel() {
         container.text = "";
-
+        hackGround(currentLevel.color);
         currentLevel.team1.displayRules(container,0);
         currentLevel.team2.displayRules(container,1);
         currentLevel.team1.displayTeam(container,0);
@@ -275,7 +287,6 @@ class Game {
         canvas.context2D.drawImage(levelSelect,0,0);
         container.append(canvas);
         container.append(overlay);
-        beatenLevels.add(Level.levels.first);
 
         for(final Level level in beatenLevels) {
             final Colour color = new Colour.fromStyleString("#ffd800");
