@@ -48,7 +48,6 @@ class Team {
         for(Rule rule in ruleSet.rules) {
             if(other.rules.contains(rule)) {
                 approvalRating ++;
-                print("the background is ${rule.element.parent.style.background}" );
                 if(rule.element != null && rule.element.parent.style.background != "rgb(156, 30, 140)") {
                     rule.element.parent.style.background =
                     "${palette["lightjersey"].toStyleString()}";
