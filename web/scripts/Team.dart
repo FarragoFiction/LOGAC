@@ -48,8 +48,8 @@ class Team {
         for(Rule rule in ruleSet.rules) {
             if(other.rules.contains(rule)) {
                 approvalRating ++;
-                if(rule.element != null && rule.element.parent.style.backgroundColor != "#44244d") {
-                    rule.element.parent.style.backgroundColor =
+                if(rule.element != null && rule.element.parent.style.background != "#44244d") {
+                    rule.element.parent.style.background =
                     "${palette["lightjersey"].toStyleString()}";
                     rule.element.parent.style.color =
                     "${palette["darkjersey"].toStyleString()}";

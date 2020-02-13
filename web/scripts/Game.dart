@@ -51,7 +51,7 @@ class Game {
         loading.text = "Click to Begin";
         loading.classes.remove("loading");
         intro.onClick.listen((Event e) {
-            playMusic("weirdambient");
+            playMusic("Mr_Jerry_Mandor");
             playSoundEffect("254286__jagadamba__mechanical-switch");
             startLevel(element);
         });
