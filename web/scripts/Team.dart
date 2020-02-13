@@ -104,6 +104,10 @@ class Team {
 
             DivElement div = new DivElement();
             div.classes.add("rule");
+            div.style.backgroundColor =
+            "${palette["lightjersey"].toStyleString()}";
+            div.style.color =
+            "${palette["darkjersey"].toStyleString()}";
             SpanElement plzwork = new SpanElement()..text = "${rule.applyObjectToPhrase(ruleSet.baseName)}";
             div.append(plzwork);
             ruleElement.append(div);
