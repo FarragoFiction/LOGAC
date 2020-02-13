@@ -36,7 +36,10 @@ abstract class AlchemyResult {
 
 class AlchemyResultAND extends AlchemyResult {
     AlchemyResultAND(List<RuleSet> items) : super(items);
-
+    @override
+    String toString() {
+        return "${items[0]} AND ${items[1]}";
+    }
     ///AND takes both functionality and appearance from both things.
     @override
     void combine() {
@@ -55,6 +58,11 @@ class AlchemyResultAND extends AlchemyResult {
 
 class AlchemyResultOR extends AlchemyResult {
     AlchemyResultOR(List<RuleSet> items) : super(items);
+
+    @override
+    String toString() {
+        return "${items[0]} OR ${items[1]}";
+    }
 
     ///OR takes  functionality from first and appearance from second. ignores all other items.
     @override
@@ -78,7 +86,10 @@ class AlchemyResultOR extends AlchemyResult {
 //spoken only of in legend, but totally fucking theoretically possible
 class AlchemyResultXOR extends AlchemyResult {
     AlchemyResultXOR(List<RuleSet> items) : super(items);
-
+    @override
+    String toString() {
+        return "${items[0]} XOR ${items[1]}";
+    }
     //XOR is where you have traits ONLY if they only show up in one place, not two.
     @override
     void combine() {

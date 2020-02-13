@@ -193,9 +193,9 @@ class Level {
     Future<void> checkBeatableDebug(Element element) async {
         //bool result = await beatable();
         new Timer(new Duration(milliseconds: 1000), () async {
-            bool result =  await beatable();
+            String result =  await beatable();
             element.text = "Beatable: $result";
-            element.style.backgroundColor = result ? "green":"red";
+            element.style.backgroundColor = result != false.toString() ? "green":"red";
         });
 
 
@@ -217,9 +217,9 @@ class Level {
     }
 
     //might take a chunk of time
-    Future<bool> beatable() async {
+    Future<String> beatable() async {
         print("Is level ${team1.ruleSet.baseName} beatable?");
-        bool beaten = false;
+        String beaten;
         for(RuleSet item1 in items) {
             for(RuleSet item2 in items) {
                 if(item1 != item2) {
@@ -232,7 +232,7 @@ class Level {
                     results.add(new AlchemyResultXOR(<RuleSet>[item2, item1]));
                     for(AlchemyResult result in results) {
                         if(suggestRuleset(result.result)) {
-                            beaten = true;
+                            beaten = "true: $result";
                             break;
                         }else {
                             print("$item1 and $item2 can not be combined to win");
@@ -240,8 +240,9 @@ class Level {
                     }
                 }
             }
-            if(beaten) break;
+            if(beaten != null) break;
         }
+        if(beaten == null) beaten = "false";
         return beaten;
     }
 }
