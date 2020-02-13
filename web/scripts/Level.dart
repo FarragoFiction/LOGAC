@@ -161,8 +161,8 @@ class Level {
                 items.add(pick);
             }
         }
-        Team team1 = new Team("Team1",final1.result, Team.randomPalette(rand.nextInt()), true);
-        Team team2 = new Team("Team2", final2.result,Team.randomPalette(rand.nextInt()),false);
+        Team team1 = new Team("Team1",final1.result, Team.randomPalette(rand.nextInt()+1), true);
+        Team team2 = new Team("Team2", final2.result,Team.randomPalette(rand.nextInt()+2),false);
         return new Level(item.baseName,team1, team2, items, algorithm,color);
 
     }

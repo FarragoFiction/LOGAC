@@ -111,6 +111,8 @@ class Game {
         displayBack();
         displayAlchemy();
         displayItems();
+        DivElement instructions = new DivElement()..text = "Find a Compromise"..classes.add('instructions')..style.left="321px";
+        container.append(instructions);
     }
 
     void displayBack() {
@@ -284,9 +286,11 @@ class Game {
         CanvasElement canvas = new CanvasElement(width: width, height: height)..classes.add("map");
         ImageElement levelSelect =  await Loader.getResource("images/map.png");
         ImageElement overlay = new ImageElement(src: "images/overlay.png")..classes.add("overlay");
+        DivElement instructions = new DivElement()..text = "Select A District"..classes.add('instructions');
         canvas.context2D.drawImage(levelSelect,0,0);
         container.append(canvas);
         container.append(overlay);
+        container.append(instructions);
 
         for(final Level level in beatenLevels) {
             final Colour color = new Colour.fromStyleString("#ffd800");

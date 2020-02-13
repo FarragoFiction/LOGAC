@@ -127,7 +127,20 @@ html, body {
     z-index: 999;
 }
 
+.instructions{
+    position: absolute;
+    left: 405px;
+    font-size: 72px;
+    color: black;
+    z-index: 1000;
+    font-weight: 900;
+}
+
 .item:hover{
+    cursor: pointer;
+}
+
+.overlay:hover{
     cursor: pointer;
 }
 
