@@ -40,7 +40,7 @@ class Game {
         element.append(container);
         DivElement intro = new DivElement()..classes.add("intro");
         container.append(intro);
-        ImageElement wright = new ImageElement(src: "images/wrightoflaw.png")..classes.add('avatar');
+        ImageElement wright = new ImageElement(src: "images/wrightoflawnebstyle.png")..classes.add('avatar');
         intro.append(wright);
         DivElement text = new DivElement()..setInnerHtml("The Wright of Law begins to actually engage with the Land of Games and Confusion, after a frankly mind boggling amount of time bugging and fussing and meddling with her coplayers. Her Quest is to use the Alchemy methods of: <br><br><li><font color = 'white'>And</font> (try to get both sets of rules to co-exist), <li><font color = 'white'>Or</font> (try to get specific parts of one set of rules, and the opposite parts of the other) <li><font color = 'white'>Xor</font> (only get rules that the two rule sets don't have in common)</li><br> on the proffered rules of of the competitions of the 8 Districts, in order to finally bring order to the chaos of the rules laid down by the Denizen Gerrymander.<br><br>While two teams of Owls watch with frankly unsettling focus, the Wright of Law must place items into the Alchemy Slots of the Adventure Bus in order to create new Rules which satisfy both teams.")..classes.add("introtext");
         intro.append(text);
