@@ -1,5 +1,5 @@
 import 'dart:html';
-
+import 'dart:math' as Math;
 import 'package:CommonLib/Colours.dart';
 import 'package:CommonLib/Random.dart';
 import 'package:LoaderLib/Loader.dart';
@@ -8,6 +8,7 @@ import 'package:RenderingLib/RendereringLib.dart';
 import 'Owl.dart';
 import 'Rule.dart';
 import 'RuleSet.dart';
+
 
 class Team {
     //a team has three owls, and an item (that has the rulesets they believe in).
@@ -177,6 +178,27 @@ class Team {
         idleSource = await Loader.getResource("images/owls/idle.png");
     }
 
+    static  Palette  inversePalette(Palette otherPalette,seed) {
+        Random rand = new Random(seed);
+
+        Palette ret = new Palette()
+            ..add("lightaccent",new Colour.fromStyleString("#44244d"))
+            ..add("darkaccent",new Colour.fromStyleString("#271128"))
+            ..add("darkjersey",new Colour.fromStyleString("#eba900"))
+            ..add("lightjersey",new Colour.fromStyleString("#ffd800"));
+
+        Colour lightaccent = new Colour(255-otherPalette["lightaccent"].red,255-otherPalette["lightaccent"].green,255-otherPalette["lightaccent"].blue );
+        //lightaccent = new Colour.hsv(lightaccent.hue, rand.nextDoubleRange(0.0,0.95), rand.nextDoubleRange(0.5,0.95));
+        ret.add("lightaccent", lightaccent,true);
+        makeOtherColorsDarker(ret, "lightaccent", <String>["darkaccent"]);
+
+        Colour lightjersey = new Colour(255-otherPalette["lightjersey"].red,255-otherPalette["lightjersey"].green,255-otherPalette["lightjersey"].blue );
+        //lightjersey = new Colour.hsv(lightjersey.hue, rand.nextDoubleRange(0.0,0.85), rand.nextDoubleRange(0.5,0.85));
+
+        ret.add("lightjersey", lightjersey,true);
+        makeOtherColorsDarker(ret, "lightjersey", <String>["darkjersey"]);
+        return ret;
+    }
 
     static  Palette  randomPalette(int seed) {
         Random rand = new Random(seed);
@@ -187,10 +209,13 @@ class Team {
             ..add("lightjersey",new Colour.fromStyleString("#ffd800"));
 
         Colour lightaccent = new Colour(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
+        lightaccent = new Colour.hsv(lightaccent.hue, rand.nextDoubleRange(0.0,0.95), rand.nextDoubleRange(0.5,0.95));
         ret.add("lightaccent", lightaccent,true);
         makeOtherColorsDarker(ret, "lightaccent", <String>["darkaccent"]);
 
         Colour lightjersey = new Colour(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
+        lightjersey = new Colour.hsv(lightjersey.hue, rand.nextDoubleRange(0.0,0.85), rand.nextDoubleRange(0.5,0.85));
+
         ret.add("lightjersey", lightjersey,true);
         makeOtherColorsDarker(ret, "lightjersey", <String>["darkjersey"]);
         return ret;
@@ -201,7 +226,7 @@ class Team {
         //print("$name, is going to make other colors darker than $sourceKey, which is ${p[referenceKey]}");
         for(String key in otherColorKeys) {
             //print("$name is going to make $key darker than $sourceKey");
-            p.add(key, new Colour(p[referenceKey].red, p[referenceKey].green, p[referenceKey].blue)..setHSV(p[referenceKey].hue, p[referenceKey].saturation, 2*p[referenceKey].value / 3), true);
+            p.add(key, new Colour(p[referenceKey].red, p[referenceKey].green, p[referenceKey].blue)..setHSV(p[referenceKey].hue, p[referenceKey].saturation, 1*p[referenceKey].value / 2), true);
             //print("$name made  $key darker than $referenceKey, its ${p[key]}");
 
             referenceKey = key; //each one is progressively darker
