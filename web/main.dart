@@ -26,8 +26,10 @@ void main() async {
     owlTest();
   }else if(Uri.base.queryParameters['mode'] == "levelTest") {
     levelTest();
+  }else if(Uri.base.queryParameters['mode'] == "cheat") {
+    realGame(true);
   }else {
-    realGame();
+  realGame();
   }
 
 }
@@ -107,9 +109,9 @@ void gameTest() async {
   Tester.testDropDown(querySelector("#output"));
 }
 
-void realGame() async {
+void realGame([bool cheat=false]) async {
   lastChoice = realGame;
-  Game game = new Game();
+  Game game = new Game(cheat);
   game.start(querySelector("#output"));
 }
 

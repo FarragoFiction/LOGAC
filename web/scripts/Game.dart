@@ -32,6 +32,9 @@ class Game {
     RuleSet firstItem;
     RuleSet secondItem;
     RuleSet resultItem;
+    bool cheat;
+
+    Game(bool this.cheat);
 
     Future<void> start(Element element) async {
         element.text = "";
@@ -71,6 +74,9 @@ class Game {
 
     Future<void> startLevel(Element element) async {
         element.text = "";
+        if(cheat) {
+            beatenLevels = Level.levels;
+        }
         if(beatenLevels.length == Level.levels.length) {
             displayWinGraphic();
         }else {
@@ -83,8 +89,10 @@ class Game {
     }
 
     void displayWinGraphic() {
-        final ImageElement win = new ImageElement(src: "images/awinnerisyou.png")..classes.add('win')..classes.add("game");
+        final ImageElement win = new ImageElement(src: "images/awinnerisyouyn.png")..classes.add('win')..classes.add("game");
         parent.append(win);
+        DivElement instructions = new DivElement()..text = "You Win!!!!!!!!"..classes.add('instructions')..style.left="850px";
+        parent.append(instructions);
         gigglesnort();
     }
 
