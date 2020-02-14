@@ -89,6 +89,7 @@ class Game {
     }
 
     void displayWinGraphic() {
+        playMusic("victory");
         final ImageElement win = new ImageElement(src: "images/awinnerisyouyn.png")..classes.add('win')..classes.add("game");
         parent.append(win);
         DivElement instructions = new DivElement()..text = "You Win!!!!!!!!"..classes.add('instructions')..style.left="850px";
