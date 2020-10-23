@@ -52,7 +52,7 @@ class RuleSet {
       });
 
       sprite.onDragStart.listen((MouseEvent e) {
-        elements.forEach((Element e) =>e.classes.add("attention"));
+          elements.forEach((Element e) =>e.classes.add("attention"));
         e.dataTransfer.setData("text","$baseName");
         Game.playSoundEffect("scrape",true);
       });

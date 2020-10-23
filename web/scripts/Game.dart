@@ -238,6 +238,7 @@ class Game {
     void secondItemDrop() {
       secondItemElement.onDrop.listen((MouseEvent e) {
           print("detected a drop for second item");
+          e.preventDefault();
           String text = e.dataTransfer.getData("text");
           if(secondItem != null) {
               secondItem.sprite.style.display = "block";
@@ -269,6 +270,7 @@ class Game {
     void firstItemDrop() {
       firstItemElement.onDrop.listen((MouseEvent e) {
           print("detected a drop for first item");
+          e.preventDefault();
           String text = e.dataTransfer.getData("text");
           if(firstItem != null) {
               firstItem.sprite.style.display= "block";
@@ -352,8 +354,6 @@ class Game {
         if(music.canPlayType("audio/ogg").isNotEmpty) music.src = "SoundFX/${locationWithoutExtension}.ogg";
         music.loop = loop;
         music.play();
-
-
     }
 
 
